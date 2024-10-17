@@ -1,9 +1,12 @@
 package com.app.storitest.ui.composables.form.password
 
+import com.app.storitest.core.extensions.isValidPassword
+
 fun validatePassword(value: String): PasswordValidationResult {
     return when {
         value.isEmpty() -> PasswordValidationResult.EMPTY
-        else -> PasswordValidationResult.VALID
+        value.isValidPassword() -> PasswordValidationResult.VALID
+        else -> PasswordValidationResult.INVALID
     }
 }
 
@@ -16,5 +19,5 @@ fun arePasswordsValid(first: String, second: String): Boolean {
 }
 
 enum class PasswordValidationResult {
-    VALID, EMPTY
+    VALID, EMPTY, INVALID
 }

@@ -11,10 +11,10 @@ import com.app.storitest.ui.theme.Space24
 
 @Composable
 fun PasswordsForm(
+    modifier: Modifier = Modifier,
     state: PasswordsFormState = rememberNewPasswordFormState(),
     firstLabel: String = stringResource(R.string.password),
-    secondLabel: String = stringResource(R.string.repeat_password),
-    modifier: Modifier = Modifier,
+    secondLabel: String = stringResource(R.string.repeat_password)
 ) {
     Column(modifier = modifier) {
         PasswordField(state = state.firstPassword, label = firstLabel)

@@ -23,9 +23,7 @@ fun TextField(
         keyboardActions = KeyboardActions(onDone = {}),
         value = state.value,
         onValueChange = { state.value = it },
-        modifier = Modifier
-            .fillMaxWidth()
-            .then(modifier),
+        modifier = Modifier.fillMaxWidth().then(modifier),
         label = {
             Text(text = label)
         },

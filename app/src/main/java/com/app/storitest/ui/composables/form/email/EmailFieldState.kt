@@ -8,8 +8,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.app.storitest.core.default
-import com.app.storitest.core.empty
+import com.app.storitest.core.extensions.default
+import com.app.storitest.core.extensions.empty
 
 @Stable
 class EmailFieldState(initialValue: String) {

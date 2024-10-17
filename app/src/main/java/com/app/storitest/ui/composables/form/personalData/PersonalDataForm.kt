@@ -16,8 +16,8 @@ import com.app.storitest.ui.theme.Space16
 
 @Composable
 fun PersonalDataForm(
-    state: PersonalDataFormState = rememberPersonalDataFormState(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    state: PersonalDataFormState = rememberPersonalDataFormState()
 ) {
     Column(
         modifier = modifier,

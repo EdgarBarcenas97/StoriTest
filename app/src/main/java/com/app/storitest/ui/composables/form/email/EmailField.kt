@@ -15,18 +15,22 @@ import com.app.storitest.R
 
 @Composable
 fun EmailField(
-    state: EmailFieldState = rememberEmailFieldState(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    state: EmailFieldState = rememberEmailFieldState()
 ) {
     OutlinedTextField(
         value = state.value,
         onValueChange = state::onValueChanged,
         modifier = Modifier.fillMaxWidth().then(modifier),
         label = {
-            Text(text = stringResource(R.string.email))
+            Text(
+                text = stringResource(R.string.email)
+            )
         },
         leadingIcon = {
-            Icon(imageVector = Icons.Default.Email, contentDescription = null)
+            Icon(
+                imageVector = Icons.Default.Email,
+                contentDescription = null)
         },
         isError = state.error != null,
         supportingText = state.error?.let {

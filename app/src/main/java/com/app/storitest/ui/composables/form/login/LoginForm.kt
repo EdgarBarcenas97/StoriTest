@@ -11,8 +11,8 @@ import com.app.storitest.ui.theme.Space24
 
 @Composable
 fun LoginForm(
-    state: LoginFormState = rememberLoginFormState(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    state: LoginFormState = rememberLoginFormState()
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(Space24),

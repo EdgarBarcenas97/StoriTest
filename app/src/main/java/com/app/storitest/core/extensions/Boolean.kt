@@ -1,4 +1,4 @@
-package com.app.storitest.core
+package com.app.storitest.core.extensions
 
 fun Boolean.Companion.default() = false
 

@@ -24,9 +24,9 @@ import com.app.storitest.R
 
 @Composable
 fun PasswordField(
+    modifier: Modifier = Modifier,
     state: PasswordFieldState = rememberPasswordFieldState(),
-    label: String = stringResource(R.string.password),
-    modifier: Modifier = Modifier
+    label: String = stringResource(R.string.password)
 ) {
     var isPasswordVisible by remember { mutableStateOf(false) }
 
@@ -52,16 +52,10 @@ fun PasswordField(
                 )
             }
         },
-        visualTransformation = if (isPasswordVisible) {
-            VisualTransformation.None
-        } else {
-            PasswordVisualTransformation()
-        },
+        visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         isError = state.error != null,
         supportingText = state.error?.let {
-            {
-                Text(text = it, style = MaterialTheme.typography.bodySmall, color = Color.Red)
-            }
+            { Text(text = it, style = MaterialTheme.typography.bodySmall, color = Color.Red) }
         }
     )
 }

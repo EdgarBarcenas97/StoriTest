@@ -10,8 +10,8 @@ import com.app.storitest.ui.theme.Space16
 
 @Composable
 fun RegistrationForm(
-    state: RegistrationFormState = rememberRegistrationFormState(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    state: RegistrationFormState = rememberRegistrationFormState()
 ) {
     Column(
         modifier = modifier,

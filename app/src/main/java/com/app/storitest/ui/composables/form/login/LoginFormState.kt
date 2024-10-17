@@ -13,7 +13,7 @@ import com.app.storitest.ui.composables.form.password.rememberPasswordFieldState
 @Stable
 class LoginFormState(
     val email: EmailFieldState,
-    val password: PasswordFieldState,
+    val password: PasswordFieldState
 ) {
     val isValid: Boolean by derivedStateOf { email.isValid && password.isValid }
 }

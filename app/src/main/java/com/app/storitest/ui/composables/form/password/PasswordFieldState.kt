@@ -8,8 +8,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.app.storitest.core.default
-import com.app.storitest.core.empty
+import com.app.storitest.core.extensions.default
+import com.app.storitest.core.extensions.empty
 
 @Stable
 class PasswordFieldState(initialValue: String) {
@@ -28,18 +28,15 @@ class PasswordFieldState(initialValue: String) {
         value = newValue
         error = when (validatePassword(newValue)) {
             PasswordValidationResult.VALID -> null
+            PasswordValidationResult.INVALID -> "Password is invalid"
             PasswordValidationResult.EMPTY -> "Password cannot be empty"
         }
     }
 }
 
 private val passwordFieldSaver = listSaver(
-    save = {
-        listOf(it.value)
-    },
-    restore = {
-        PasswordFieldState(it[Int.default()])
-    }
+    save = { listOf(it.value) },
+    restore = { PasswordFieldState(it[Int.default()]) }
 )
 
 @Composable

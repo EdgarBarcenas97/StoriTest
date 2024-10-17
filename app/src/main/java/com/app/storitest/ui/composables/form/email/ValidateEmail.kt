@@ -1,12 +1,12 @@
 package com.app.storitest.ui.composables.form.email
 
-private const val EMAIL_FORMAT = "^[A-Za-z0-9+_.-]+@(.+)\$"
+import com.app.storitest.core.extensions.isValidEmail
 
 fun validateEmail(email: String): EmailValidationResult {
     return when {
         email.isEmpty() -> EmailValidationResult.EMPTY
-        !email.matches(Regex(EMAIL_FORMAT)) -> EmailValidationResult.INVALID_FORMAT
-        else -> EmailValidationResult.VALID
+        email.isValidEmail() -> EmailValidationResult.VALID
+        else -> EmailValidationResult.INVALID_FORMAT
     }
 }
 

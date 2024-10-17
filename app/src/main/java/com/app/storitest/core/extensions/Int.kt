@@ -1,4 +1,4 @@
-package com.app.storitest.core
+package com.app.storitest.core.extensions
 
 private const val DEFAULT_VALUE = 0
 private const val ONE = 1

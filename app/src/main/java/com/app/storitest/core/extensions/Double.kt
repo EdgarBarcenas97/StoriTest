@@ -1,4 +1,4 @@
-package com.app.storitest.core
+package com.app.storitest.core.extensions
 
 fun Double.Companion.default() = 0.0
 
