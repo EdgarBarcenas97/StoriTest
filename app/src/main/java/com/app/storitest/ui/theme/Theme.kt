@@ -1,58 +1,40 @@
 package com.app.storitest.ui.theme
 
-import android.app.Activity
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.Typography
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
-
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
-)
+import androidx.compose.ui.text.font.FontFamily
 
 @Composable
-fun StoriTestTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
-) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
+internal fun StoriTestTheme(content: @Composable () -> Unit) {
+    MaterialTheme(colorScheme = lightColorPalette, typography = Typography, content = content)
+}
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
+private val lightColorPalette = lightColorScheme(
+    primary = GreenPrimary,
+    primaryContainer = GreenSecondary,
+    secondary = GreenSecondary,
+    tertiary = GreenStori,
+    background = WhiteStori,
+    surface = WhiteStori,)
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
+fun Typography.defaultFontFamily(fontFamily: FontFamily): Typography {
+    return this.copy(
+        displayLarge = this.displayLarge.copy(fontFamily = fontFamily),
+        displayMedium = this.displayMedium.copy(fontFamily = fontFamily),
+        displaySmall = this.displaySmall.copy(fontFamily = fontFamily),
+        headlineLarge = this.headlineLarge.copy(fontFamily = fontFamily),
+        headlineMedium = this.headlineMedium.copy(fontFamily = fontFamily),
+        headlineSmall = this.headlineSmall.copy(fontFamily = fontFamily),
+        titleLarge = this.titleLarge.copy(fontFamily = fontFamily),
+        titleMedium = this.titleMedium.copy(fontFamily = fontFamily),
+        titleSmall = this.titleSmall.copy(fontFamily = fontFamily),
+        bodyLarge = this.bodyLarge.copy(fontFamily = fontFamily),
+        bodyMedium = this.bodyMedium.copy(fontFamily = fontFamily),
+        bodySmall = this.bodySmall.copy(fontFamily = fontFamily),
+        labelLarge = this.labelLarge.copy(fontFamily = fontFamily),
+        labelMedium = this.labelMedium.copy(fontFamily = fontFamily),
+        labelSmall = this.labelSmall.copy(fontFamily = fontFamily)
     )
 }

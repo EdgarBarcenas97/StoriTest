@@ -1,4 +1,4 @@
-package com.app.storitest
+package com.app.storitest.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

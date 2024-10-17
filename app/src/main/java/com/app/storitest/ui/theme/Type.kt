@@ -4,31 +4,77 @@ import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
 
-// Set of Material typography styles to start with
 val Typography = Typography(
+    headlineSmall = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Medium,
+        fontSize = HeadlineSmall,
+        lineHeight = HeadlineLineHeight,
+        color = BlackStori),
+    headlineMedium = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Medium,
+        fontSize = HeadlineMedium,
+        lineHeight = HeadlineLineHeight,
+        color = BlackStori),
+    headlineLarge = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Bold,
+        fontSize = HeadlineLarge,
+        lineHeight = HeadlineLineHeight,
+        color = BlackStori),
+    titleSmall = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Medium,
+        fontSize = LabelLarge,
+        lineHeight = TitleLineHeight,
+        color = BlackStori),
+    titleMedium = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Medium,
+        fontSize = BodyLarge,
+        lineHeight = HeadlineLineHeight,
+        color = BlackStori),
+    titleLarge = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Bold,
+        fontSize = TitleLarge,
+        lineHeight = HeadlineLineHeight,
+        color = BlackStori),
+    bodySmall = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = LabelMedium,
+        lineHeight = BodyLineHeight,
+        color = BlackStori),
+    bodyMedium = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = LabelLarge,
+        lineHeight = BodyLineHeight,
+        color = BlackStori),
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
+        fontSize = BodyLarge,
+        lineHeight = BodyLineHeight,
+        color = BlackStori),
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = LabelSmall,
+        lineHeight = LabelLineHeight,
+        color = BlackStori),
+    labelMedium = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = LabelMedium,
+        lineHeight = LabelLineHeight,
+        color = BlackStori),
+    labelLarge = TextStyle(
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
-)
+        fontSize = LabelLarge,
+        lineHeight = LabelLineHeight,
+        color = BlackStori))
