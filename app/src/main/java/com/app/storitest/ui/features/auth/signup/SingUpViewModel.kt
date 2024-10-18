@@ -24,9 +24,9 @@ class SingUpViewModel @Inject constructor(private val signUpUseCase: SignUpUseCa
     val signUpUiModelState: StateFlow<SignUpUiModelState?>
         get() = _signUpUiModelState
 
-    private val _pictureUiState = MutableStateFlow(String.empty())
-    val pictureUiState: StateFlow<String>
-        get() = _pictureUiState
+    private val _pictureUiModelState = MutableStateFlow(String.empty())
+    val pictureUiModelState: StateFlow<String>
+        get() = _pictureUiModelState
 
     private val _navigateToHome = MutableSharedFlow<Unit>()
     val navigateToHome: SharedFlow<Unit>
@@ -60,7 +60,7 @@ class SingUpViewModel @Inject constructor(private val signUpUseCase: SignUpUseCa
     }
 
     fun loadPicture(path: String) {
-        _pictureUiState.value = path
+        _pictureUiModelState.value = path
     }
 
     fun navigateToHome() = viewModelScope.launch {
