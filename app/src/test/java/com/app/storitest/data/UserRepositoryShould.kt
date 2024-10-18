@@ -11,8 +11,6 @@ import com.app.storitest.fakeData.givenTransactionDetail
 import com.app.storitest.fakeData.givenTransactionDetailResponse
 import com.app.storitest.fakeData.givenUser
 import com.app.storitest.fakeData.givenUserFirestore
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.lastOrNull
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -36,23 +34,23 @@ class UserRepositoryShould {
         val userFirestore = givenUserFirestore()
         val user = givenUser()
         val resultUserFirestore = Result.success(userFirestore)
-        whenever(userRemoteDataSource.getUser()).thenReturn(flowOf(resultUserFirestore))
+        whenever(userRemoteDataSource.getUser()).thenReturn(resultUserFirestore)
 
-        val result = userRepository.getUser().lastOrNull()
+        val result = userRepository.getUser()
 
         verify(userRemoteDataSource).getUser()
-        assertThatEquals(result?.getOrNull(), user)
+        assertThatEquals(result.getOrNull(), user)
     }
 
     @Test
     fun `Get GetUserException when signUp is called and signUp in datasource is failure`() = runTest {
         val resultSGetUserException: Result<UserFirestore> = Result.failure(UserException.GetUserException())
-        whenever(userRemoteDataSource.getUser()).thenReturn(flowOf(resultSGetUserException))
+        whenever(userRemoteDataSource.getUser()).thenReturn(resultSGetUserException)
 
-        val result = userRepository.getUser().lastOrNull()
+        val result = userRepository.getUser()
 
         verify(userRemoteDataSource).getUser()
-        assertThatIsInstanceOf<UserException.GetUserException>(result?.exceptionOrNull())
+        assertThatIsInstanceOf<UserException.GetUserException>(result.exceptionOrNull())
     }
 
     @Test
@@ -60,22 +58,22 @@ class UserRepositoryShould {
         val transactionDetailFirestore = givenTransactionDetailResponse()
         val transactionDetail = givenTransactionDetail()
         val resultTransactionDetailFirestore = Result.success(transactionDetailFirestore)
-        whenever(userRemoteDataSource.getTransactionDetail(ANY_TRANSACTIONS_ID)).thenReturn(flowOf(resultTransactionDetailFirestore))
+        whenever(userRemoteDataSource.getTransactionDetail(ANY_TRANSACTIONS_ID)).thenReturn(resultTransactionDetailFirestore)
 
-        val result = userRepository.getTransactionDetail(ANY_TRANSACTIONS_ID).lastOrNull()
+        val result = userRepository.getTransactionDetail(ANY_TRANSACTIONS_ID)
 
         verify(userRemoteDataSource).getTransactionDetail(ANY_TRANSACTIONS_ID)
-        assertThatEquals(result?.getOrNull(), transactionDetail)
+        assertThatEquals(result.getOrNull(), transactionDetail)
     }
 
     @Test
     fun `Get GetUserException when getTransactionDetail is called and getTransactionDetail in datasource is failure`() = runTest {
         val resultGetUserException: Result<TransactionDetailFirestore> = Result.failure(UserException.GetUserException())
-        whenever(userRemoteDataSource.getTransactionDetail(ANY_TRANSACTIONS_ID)).thenReturn(flowOf(resultGetUserException))
+        whenever(userRemoteDataSource.getTransactionDetail(ANY_TRANSACTIONS_ID)).thenReturn(resultGetUserException)
 
-        val result = userRepository.getTransactionDetail(ANY_TRANSACTIONS_ID).lastOrNull()
+        val result = userRepository.getTransactionDetail(ANY_TRANSACTIONS_ID)
 
         verify(userRemoteDataSource).getTransactionDetail(ANY_TRANSACTIONS_ID)
-        assertThatIsInstanceOf<UserException.GetUserException>(result?.exceptionOrNull())
+        assertThatIsInstanceOf<UserException.GetUserException>(result.exceptionOrNull())
     }
 }

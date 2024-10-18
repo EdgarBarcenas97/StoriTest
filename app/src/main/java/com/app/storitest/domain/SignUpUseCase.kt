@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class SignUpUseCase @Inject constructor(private val authRepository: AuthRepository) {
 
-    fun signUp(userRegister: UserRegister) = authRepository.signUp(userRegister)
+    suspend fun signUp(userRegister: UserRegister) = authRepository.signUp(userRegister)
 }

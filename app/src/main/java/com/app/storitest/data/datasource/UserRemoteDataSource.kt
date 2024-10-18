@@ -8,72 +8,68 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class UserRemoteDataSource @Inject constructor(private val firebaseAuth: FirebaseAuth,
                                                private val firebaseStorage: FirebaseStorage,
                                                private val firebaseFirestore: FirebaseFirestore) {
 
-    fun savePictureUser(picture: String): Flow<Result<String>> = callbackFlow {
+    suspend fun savePictureUser(picture: String): Result<String> = suspendCoroutine { continuation ->
         val uri = Uri.parse(picture)
         val mountainImagesRef = firebaseStorage.reference.child("$PATH_IMAGE/${uri.lastPathSegment}")
         mountainImagesRef.putFile(uri)
             .addOnSuccessListener {
                 mountainImagesRef.downloadUrl.addOnSuccessListener {
-                    trySend(Result.success(it.toString()))
+                    continuation.resume(Result.success(it.toString()))
                 }.addOnFailureListener {
-                    trySend(Result.failure(UserException.SavePictureUserException()))
+                    continuation.resume(Result.failure(UserException.SavePictureUserException()))
                 }
             }.addOnFailureListener {
-                trySend(Result.failure(UserException.SavePictureUserException()))
+                continuation.resume(Result.failure(UserException.SavePictureUserException()))
             }
-        awaitClose { close() }
     }
 
-    fun saveUser(userMap: Map<String, String>): Flow<Result<String>> = callbackFlow {
+    suspend fun saveUser(userMap: Map<String, String>): Result<String> = suspendCoroutine { continuation ->
         val userId = firebaseAuth.currentUser?.uid.orEmpty()
         firebaseFirestore.collection(USERS_COLLECTION)
             .document(userId)
             .set(userMap)
-            .addOnSuccessListener { trySend(Result.success(userId)) }
-            .addOnFailureListener { trySend(Result.failure(UserException.SaveUserException())) }
-        awaitClose { close() }
+            .addOnSuccessListener { continuation.resume(Result.success(userId)) }
+            .addOnFailureListener { continuation.resume(Result.failure(UserException.SaveUserException())) }
     }
 
-    fun getUser(): Flow<Result<UserFirestore?>> = callbackFlow {
+    suspend fun getUser(): Result<UserFirestore?> = suspendCoroutine { continuation ->
         val userId = firebaseAuth.currentUser?.uid.orEmpty()
         firebaseFirestore.collection(USERS_COLLECTION)
             .document(userId)
             .get()
             .addOnSuccessListener {
-                trySend(
+                continuation.resume(
                     if (it.exists()) Result.success(it.toObject<UserFirestore>())
                     else Result.failure(UserException.GetUserException())
                 )
             }
-            .addOnFailureListener { trySend(Result.failure(UserException.GetUserException())) }
-        awaitClose { close() }
+            .addOnFailureListener { continuation.resume(Result.failure(UserException.GetUserException())) }
     }
 
-    fun getTransactionDetail(transactionId: String): Flow<Result<TransactionDetailFirestore?>> = callbackFlow {
+    suspend fun getTransactionDetail(transactionId: String): Result<TransactionDetailFirestore?> = suspendCoroutine { continuation ->
         val userId = firebaseAuth.currentUser?.uid.orEmpty()
         firebaseFirestore.collection(USERS_COLLECTION)
             .document(userId)
             .collection(TRANSACTIONS_COLLECTION)
             .document(transactionId)
             .get()
-            .addOnSuccessListener { trySend(
-                if (it.exists()) Result.success(it.toObject<TransactionDetailFirestore>())
-                else Result.failure(UserException.GetUserException()))
+            .addOnSuccessListener {
+                continuation.resume(
+                    if (it.exists()) Result.success(it.toObject<TransactionDetailFirestore>())
+                    else Result.failure(UserException.GetUserException()))
             }
             .addOnFailureListener {
                 it.printStackTrace()
-                trySend(Result.failure(UserException.GetUserException()))
+                continuation.resume(Result.failure(UserException.GetUserException()))
             }
-        awaitClose { close() }
     }
 
     companion object {

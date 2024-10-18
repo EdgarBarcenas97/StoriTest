@@ -1,6 +1,5 @@
 package com.app.storitest.data.datasource
 
-import com.app.storitest.core.collectAndCancel
 import com.app.storitest.fakeData.ANY_TRANSACTIONS_ID
 import com.app.storitest.fakeData.ANY_USER_ID
 import com.app.storitest.fakeData.givenUserMap
@@ -44,15 +43,15 @@ class UserRemoteDataShould {
 
         whenever(firebaseAuth.currentUser).thenReturn(firebaseUser)
         whenever(firebaseUser.uid).thenReturn(ANY_USER_ID)
-
         whenever(firebaseFirestore.collection(UserRemoteDataSource.USERS_COLLECTION)).thenReturn(collectionReference)
         whenever(collectionReference.document(ANY_USER_ID)).thenReturn(documentReference)
         whenever(documentReference.set(userMap)).thenReturn(voidTask)
         whenever(voidTask.addOnSuccessListener(any())).thenReturn(voidTask)
 
-        authRemoteDataSource.saveUser(userMap).collectAndCancel()
+        authRemoteDataSource.saveUser(userMap)
 
-        verify(firebaseFirestore.collection(UserRemoteDataSource.USERS_COLLECTION).document(ANY_USER_ID)).set(userMap)
+        verify(documentReference).set(userMap)
+        verify(firebaseFirestore.collection(UserRemoteDataSource.USERS_COLLECTION).document(ANY_USER_ID)).set(ANY_USER_ID)
     }
 
     @Test
@@ -65,7 +64,7 @@ class UserRemoteDataShould {
         whenever(documentReference.get()).thenReturn(documentSnapshotTask)
         whenever(documentSnapshotTask.addOnSuccessListener(any())).thenReturn(documentSnapshotTask)
 
-        authRemoteDataSource.getUser().collectAndCancel()
+        authRemoteDataSource.getUser()
 
         verify(firebaseFirestore.collection(UserRemoteDataSource.USERS_COLLECTION).document(ANY_USER_ID)).get()
     }
@@ -82,7 +81,7 @@ class UserRemoteDataShould {
         whenever(documentReference.get()).thenReturn(documentSnapshotTask)
         whenever(documentSnapshotTask.addOnSuccessListener(any())).thenReturn(documentSnapshotTask)
 
-        authRemoteDataSource.getTransactionDetail(ANY_TRANSACTIONS_ID).collectAndCancel()
+        authRemoteDataSource.getTransactionDetail(ANY_TRANSACTIONS_ID)
 
         verify(firebaseFirestore.collection(UserRemoteDataSource.USERS_COLLECTION).document(ANY_USER_ID)).get()
     }

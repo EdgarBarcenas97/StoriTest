@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 class GetUserUseCase @Inject constructor(private val userRepository: UserRepository) {
 
-    fun getUser() = userRepository.getUser()
+    suspend fun getUser() = userRepository.getUser()
 }

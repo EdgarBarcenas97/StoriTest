@@ -14,8 +14,6 @@ import com.app.storitest.fakeData.ANY_USER_ID
 import com.app.storitest.fakeData.givenUserMap
 import com.app.storitest.fakeData.givenUserRegister
 import com.app.storitest.fakeData.givenUserRegisterWithLocalPictureUser
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.lastOrNull
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -43,30 +41,30 @@ class AuthRepositoryShould {
         val userMap = givenUserMap()
         val resultPicture = Result.success(ANY_PICTURE)
         val resultUserId = Result.success(ANY_USER_ID)
-        whenever(authRemoteDataSource.signUp(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(flowOf(resultUserId))
-        whenever(userRemoteDataSource.savePictureUser(ANY_LOCAL_PICTURE_USER)).thenReturn(flowOf(resultPicture))
-        whenever(userRemoteDataSource.saveUser(userMap)).thenReturn(flowOf(resultUserId))
+        whenever(authRemoteDataSource.signUp(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(resultUserId)
+        whenever(userRemoteDataSource.savePictureUser(ANY_LOCAL_PICTURE_USER)).thenReturn(resultPicture)
+        whenever(userRemoteDataSource.saveUser(userMap)).thenReturn(resultUserId)
 
-        val result = authRepository.signUp(userRegister).lastOrNull()
+        val result = authRepository.signUp(userRegister)
 
         verify(authRemoteDataSource).signUp(ANY_USER_EMAIL, ANY_PASSWORD)
         verify(userRemoteDataSource).savePictureUser(ANY_LOCAL_PICTURE_USER)
         verify(userRemoteDataSource).saveUser(userMap)
-        assertThatEquals(result?.getOrNull(), ANY_USER_ID)
+        assertThatEquals(result.getOrNull(), ANY_USER_ID)
     }
 
     @Test
     fun `Get SignUpException when signUp is called and signUp in datasource is failure`() = runTest {
         val userRegister = givenUserRegister()
         val resultSignUpException: Result<String> = Result.failure(AuthException.SignUpException())
-        whenever(authRemoteDataSource.signUp(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(flowOf(resultSignUpException))
+        whenever(authRemoteDataSource.signUp(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(resultSignUpException)
 
-        val result = authRepository.signUp(userRegister).lastOrNull()
+        val result = authRepository.signUp(userRegister)
 
         verify(authRemoteDataSource).signUp(ANY_USER_EMAIL, ANY_PASSWORD)
         verify(userRemoteDataSource, never()).savePictureUser(ANY_LOCAL_PICTURE_USER)
         verify(userRemoteDataSource, never()).saveUser(any())
-        assertThatIsInstanceOf<AuthException.SignUpException>(result?.exceptionOrNull())
+        assertThatIsInstanceOf<AuthException.SignUpException>(result.exceptionOrNull())
     }
 
     @Test
@@ -75,15 +73,15 @@ class AuthRepositoryShould {
         val userMap = givenUserMap()
         val resultUserId = Result.success(ANY_USER_ID)
         val resultSavePictureUserException: Result<String> = Result.failure(UserException.SavePictureUserException())
-        whenever(authRemoteDataSource.signUp(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(flowOf(resultUserId))
-        whenever(userRemoteDataSource.savePictureUser(ANY_LOCAL_PICTURE_USER)).thenReturn(flowOf(resultSavePictureUserException))
+        whenever(authRemoteDataSource.signUp(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(resultUserId)
+        whenever(userRemoteDataSource.savePictureUser(ANY_LOCAL_PICTURE_USER)).thenReturn(resultSavePictureUserException)
 
-        val result = authRepository.signUp(userRegister).lastOrNull()
+        val result = authRepository.signUp(userRegister)
 
         verify(authRemoteDataSource).signUp(ANY_USER_EMAIL, ANY_PASSWORD)
         verify(userRemoteDataSource).savePictureUser(ANY_LOCAL_PICTURE_USER)
         verify(userRemoteDataSource, never()).saveUser(userMap)
-        assertThatIsInstanceOf<UserException.SavePictureUserException>(result?.exceptionOrNull())
+        assertThatIsInstanceOf<UserException.SavePictureUserException>(result.exceptionOrNull())
     }
 
     @Test
@@ -93,37 +91,37 @@ class AuthRepositoryShould {
         val resultPicture = Result.success(ANY_PICTURE)
         val resultUserId = Result.success(ANY_USER_ID)
         val resultSaveUserException: Result<String> = Result.failure(UserException.SaveUserException())
-        whenever(authRemoteDataSource.signUp(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(flowOf(resultUserId))
-        whenever(userRemoteDataSource.savePictureUser(ANY_LOCAL_PICTURE_USER)).thenReturn(flowOf(resultPicture))
-        whenever(userRemoteDataSource.saveUser(userMap)).thenReturn(flowOf(resultSaveUserException))
+        whenever(authRemoteDataSource.signUp(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(resultUserId)
+        whenever(userRemoteDataSource.savePictureUser(ANY_LOCAL_PICTURE_USER)).thenReturn(resultPicture)
+        whenever(userRemoteDataSource.saveUser(userMap)).thenReturn(resultSaveUserException)
 
-        val result = authRepository.signUp(userRegister).lastOrNull()
+        val result = authRepository.signUp(userRegister)
 
         verify(authRemoteDataSource).signUp(ANY_USER_EMAIL, ANY_PASSWORD)
         verify(userRemoteDataSource).savePictureUser(ANY_LOCAL_PICTURE_USER)
         verify(userRemoteDataSource).saveUser(userMap)
-        assertThatIsInstanceOf<UserException.SaveUserException>(result?.exceptionOrNull())
+        assertThatIsInstanceOf<UserException.SaveUserException>(result.exceptionOrNull())
     }
 
     @Test
     fun `Return UserId when signIn is called and signIn in datasource is success`() = runTest {
         val resultUserId = Result.success(ANY_USER_ID)
-        whenever(authRemoteDataSource.signIn(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(flowOf(resultUserId))
+        whenever(authRemoteDataSource.signIn(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(resultUserId)
 
-        val result = authRepository.signIn(ANY_USER_EMAIL, ANY_PASSWORD).lastOrNull()
+        val result = authRepository.signIn(ANY_USER_EMAIL, ANY_PASSWORD)
 
         verify(authRemoteDataSource).signIn(ANY_USER_EMAIL, ANY_PASSWORD)
-        assertThatEquals(result?.getOrNull(), ANY_USER_ID)
+        assertThatEquals(result.getOrNull(), ANY_USER_ID)
     }
 
     @Test
     fun `Get SignInException when signIn is called and signIn in datasource is failure`() = runTest {
         val resultSignInException: Result<String> = Result.failure(AuthException.SignInException())
-        whenever(authRemoteDataSource.signIn(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(flowOf(resultSignInException))
+        whenever(authRemoteDataSource.signIn(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(resultSignInException)
 
-        val result = authRepository.signIn(ANY_USER_EMAIL, ANY_PASSWORD).lastOrNull()
+        val result = authRepository.signIn(ANY_USER_EMAIL, ANY_PASSWORD)
 
         verify(authRemoteDataSource).signIn(ANY_USER_EMAIL, ANY_PASSWORD)
-        assertThatIsInstanceOf<AuthException.SignInException>(result?.exceptionOrNull())
+        assertThatIsInstanceOf<AuthException.SignInException>(result.exceptionOrNull())
     }
 }

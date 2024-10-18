@@ -1,6 +1,5 @@
 package com.app.storitest.data.datasource
 
-import com.app.storitest.core.collectAndCancel
 import com.app.storitest.fakeData.ANY_PASSWORD
 import com.app.storitest.fakeData.ANY_USER_EMAIL
 import com.google.android.gms.tasks.Task
@@ -31,7 +30,7 @@ class AuthRemoteDataShould {
         whenever(firebaseAuth.signInWithEmailAndPassword(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(authResultTask)
         whenever(authResultTask.addOnSuccessListener(any())).thenReturn(authResultTask)
 
-        authRemoteDataSource.signIn(ANY_USER_EMAIL, ANY_PASSWORD).collectAndCancel()
+        authRemoteDataSource.signIn(ANY_USER_EMAIL, ANY_PASSWORD)
 
         verify(firebaseAuth).signInWithEmailAndPassword(ANY_USER_EMAIL, ANY_PASSWORD)
     }
@@ -41,8 +40,17 @@ class AuthRemoteDataShould {
         whenever(firebaseAuth.createUserWithEmailAndPassword(ANY_USER_EMAIL, ANY_PASSWORD)).thenReturn(authResultTask)
         whenever(authResultTask.addOnSuccessListener(any())).thenReturn(authResultTask)
 
-        authRemoteDataSource.signUp(ANY_USER_EMAIL, ANY_PASSWORD).collectAndCancel()
+        authRemoteDataSource.signUp(ANY_USER_EMAIL, ANY_PASSWORD)
 
         verify(firebaseAuth).createUserWithEmailAndPassword(ANY_USER_EMAIL, ANY_PASSWORD)
+    }
+
+    private fun mockTask(authResult: AuthResult, exception: Exception? = null): Task<AuthResult> {
+        val task = mock<Task<AuthResult>>()
+        whenever(task.isComplete).thenReturn(true)
+        whenever(task.exception).thenReturn(exception)
+        whenever(task.isCanceled).thenReturn(false)
+        whenever(task.result).thenReturn(authResult)
+        return task
     }
 }
