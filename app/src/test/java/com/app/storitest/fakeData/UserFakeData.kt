@@ -12,16 +12,16 @@ import com.app.storitest.ui.features.auth.signup.models.UserRegisterUi
 import com.app.storitest.ui.features.home.data.UserUi
 
 const val ANY_USER_ID = "MaKNkzR0ySOFAd9PS4IFxnW5rpX2"
-private const val ANY_FIRST_NAME = "Salvador"
-private const val ANY_INVALID_FIRST_NAME = "Sal"
-private const val ANY_LAST_NAME = "Maurilio"
-private const val ANY_INVALID_LAST_NAME = "Mau"
-const val ANY_USER_EMAIL = "salvador@google.mx"
-const val ANY_INVALID_USER_EMAIL = "salvadorbuapap.mx"
-const val ANY_PASSWORD = "Admin1234_1"
+private const val ANY_FIRST_NAME = "Daniel"
+private const val ANY_INVALID_FIRST_NAME = "koooe"
+private const val ANY_LAST_NAME = "Barcenas"
+private const val ANY_INVALID_LAST_NAME = "Mi"
+const val ANY_USER_EMAIL = "edgar.barcenas@stori.mx"
+const val ANY_INVALID_USER_EMAIL = "edgar.barcenas.mx"
+const val ANY_PASSWORD = "Admin12345"
 const val ANY_INVALID_PASSWORD = "Admi"
-private const val ANY_OTHER_PASSWORD = "Admin1234_12"
-const val ANY_PICTURE = "https://previews.123rf.com/images/alexutemov/alexutemov1605/alexutemov160500480/56958565-id-identidad-corporativa-medicina-identificador-identificaci%C3%B3n-del-m%C3%A9dico-y-la-tarjeta-de.jpg"
+private const val ANY_OTHER_PASSWORD = "Admin123412"
+const val ANY_PICTURE = "https://www.storicard.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcredit-cards.767adfcc.webp&w=1920&q=100"
 const val ANY_LOCAL_PICTURE_USER = "content://images/alexutemov/alexutemov1605/alexutemov160500480/temps.jpg"
 
 fun givenUserMap() = mapOf(

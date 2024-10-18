@@ -2,19 +2,17 @@ package com.app.storitest.domain.models
 
 import com.app.storitest.data.models.TransactionDetailFirestore
 
-data class Transaction(
-    val id: String,
-    val name: String,
-    val date: String,
-    val amount: String)
+data class Transaction(val id: String,
+                       val name: String,
+                       val date: String,
+                       val amount: String)
 
-data class TransactionDetail(
-    val name: String,
-    val date: String,
-    val amount: String,
-    val card: String,
-    val reference: String,
-    val category: String)
+data class TransactionDetail(val name: String,
+                             val date: String,
+                             val amount: String,
+                             val card: String,
+                             val reference: String,
+                             val category: String)
 
 fun ArrayList<Map<String, String>>?.toTransactionList() = this?.map { it.toTransaction() }.orEmpty()
 

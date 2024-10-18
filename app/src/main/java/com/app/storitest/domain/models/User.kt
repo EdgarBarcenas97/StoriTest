@@ -2,19 +2,17 @@ package com.app.storitest.domain.models
 
 import com.app.storitest.data.models.UserFirestore
 
-data class UserRegister(
-    val fistName: String,
-    val lastName: String,
-    val email: String,
-    val password: String,
-    var picture: String)
+data class UserRegister(val fistName: String,
+                        val lastName: String,
+                        val email: String,
+                        val password: String,
+                        var picture: String)
 
-data class User(
-    val firstName: String,
-    val lastName: String,
-    val email: String,
-    val picture: String,
-    val transactions: List<Transaction>)
+data class User(val firstName: String,
+                val lastName: String,
+                val email: String,
+                val picture: String,
+                val transactions: List<Transaction>)
 
 fun UserRegister.toUserRegisterMap() = mapOf(
     FIRST_NAME to fistName,

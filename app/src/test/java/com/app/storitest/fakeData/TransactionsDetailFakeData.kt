@@ -13,18 +13,18 @@ import com.app.storitest.ui.features.home.data.TransactionUi
 const val ANY_TRANSACTIONS_ID = "MaKNASzR0ySOFA99PS4ASW5rpX2"
 
 const val ANY_TRANSACTION_ID_1 = "MaKNASzR0ySOFA99PS4ASW5rpX2"
-const val ANY_TRANSACTION_NAME_1 = "Uber Eats"
+const val ANY_TRANSACTION_NAME_1 = "Rappi"
 const val ANY_TRANSACTION_DATE_1 = "14 feb 2024, 15:20"
 const val ANY_TRANSACTION_AMOUNT_1 = "$120.00"
 
 const val ANY_TRANSACTION_ID_2 = "MaKNASzR0ySOFA99PS4IFASW5rpX3"
-const val ANY_TRANSACTION_NAME_2 = "Amazon Mx"
+const val ANY_TRANSACTION_NAME_2 = "Mercado Libre"
 const val ANY_TRANSACTION_DATE_2 = "15 feb 2024, 16:25"
 const val ANY_TRANSACTION_AMOUNT_2 = "$560.00"
 
 const val ANY_TRANSACTION_CARD = "**** 0490"
 const val ANY_TRANSACTION_REFERENCE = "2131231231232131"
-const val ANY_TRANSACTION_CATEGORY = "Comida"
+const val ANY_TRANSACTION_CATEGORY = "Food"
 
 fun givenMovementsResponseArray() = arrayListOf(givenTransactionMap1(), givenTransactionMap2())
 
