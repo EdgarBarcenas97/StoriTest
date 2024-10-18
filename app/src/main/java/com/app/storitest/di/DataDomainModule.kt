@@ -1,5 +1,6 @@
 package com.app.storitest.di
 
+import com.app.storitest.core.CoroutinesDispatchers
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -25,4 +26,8 @@ object DataDomainModule {
     @Provides
     @Singleton
     fun provideFirebaseFirestore() = Firebase.firestore
+
+    @Provides
+    @Singleton
+    fun provideCoroutinesDispatchers() = CoroutinesDispatchers()
 }

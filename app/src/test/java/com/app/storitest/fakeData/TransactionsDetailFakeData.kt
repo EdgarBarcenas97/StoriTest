@@ -26,7 +26,7 @@ const val ANY_TRANSACTION_CARD = "**** 0490"
 const val ANY_TRANSACTION_REFERENCE = "2131231231232131"
 const val ANY_TRANSACTION_CATEGORY = "Food"
 
-fun givenMovementsResponseArray() = arrayListOf(givenTransactionMap1(), givenTransactionMap2())
+fun givenTransactionsResponseArray() = arrayListOf(givenTransactionMap1(), givenTransactionMap2())
 
 private fun givenTransactionMap1() = mapOf(
     TRANSACTION_ID to ANY_TRANSACTION_ID_1,

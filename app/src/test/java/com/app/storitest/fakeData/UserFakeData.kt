@@ -49,7 +49,7 @@ fun givenUserFirestore() = UserFirestore(
     lastName = ANY_LAST_NAME,
     email = ANY_USER_EMAIL,
     picture = ANY_LOCAL_PICTURE_USER,
-    transactions = givenMovementsResponseArray())
+    transactions = givenTransactionsResponseArray())
 
 fun givenUser() = User(
     firstName = ANY_FIRST_NAME,
