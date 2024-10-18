@@ -7,7 +7,7 @@ fun OnboardingScreen(
     onSignInClick: () -> Unit,
     onSignUpClick: () -> Unit
 ) {
-    OnboardingScaffold(
+    OnboardingContent(
         onSignInClick = onSignInClick,
         onSignUpClick = onSignUpClick
     )

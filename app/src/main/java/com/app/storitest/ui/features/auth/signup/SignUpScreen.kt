@@ -6,5 +6,7 @@ import androidx.compose.runtime.Composable
 fun SignUpScreen(
     onBackClick: () -> Unit
 ) {
-    SignUpScaffold(onBackClick = onBackClick)
+    SignUpScaffold(
+        onRegisterClick = { personalData, password -> },
+        onBackClick = onBackClick)
 }
