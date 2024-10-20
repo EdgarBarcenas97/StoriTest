@@ -7,6 +7,7 @@ import androidx.navigation.navigation
 import com.app.storitest.ui.features.auth.onboarding.OnboardingScreen
 import com.app.storitest.ui.features.auth.signin.SignInScreen
 import com.app.storitest.ui.features.auth.signup.SignUpScreen
+import com.app.storitest.ui.features.home.HomeGraph
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -40,7 +41,16 @@ fun NavGraphBuilder.authGraph(
         }
         composable<SignUpScreenRoute> {
             SignUpScreen(
-                onBackClick = { rootController.popBackStack() }
+                onBackClick = {
+                    rootController.popBackStack()
+                },
+                onRegisterClick = { email, password ->
+                    rootController.navigate(HomeGraph) {
+                        popUpTo(rootController.graph.id) {
+                            inclusive = true
+                        }
+                    }
+                }
             )
         }
     }

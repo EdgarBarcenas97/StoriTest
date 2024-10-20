@@ -1,12 +1,15 @@
 package com.app.storitest.ui.features.auth.signup
 
 import androidx.compose.runtime.Composable
+import com.app.storitest.ui.composables.form.personalData.PersonalData
 
 @Composable
 fun SignUpScreen(
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onRegisterClick: (personalData: PersonalData, password: String) -> Unit
 ) {
     SignUpScaffold(
-        onRegisterClick = { personalData, password -> },
-        onBackClick = onBackClick)
+        onBackClick = onBackClick,
+        onRegisterClick = onRegisterClick
+    )
 }
