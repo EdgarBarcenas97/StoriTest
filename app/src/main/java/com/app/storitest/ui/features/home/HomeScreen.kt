@@ -6,9 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.app.storitest.ui.composables.BottomNavigationBar
+import com.app.storitest.ui.features.detail.DetailScreen
+import com.app.storitest.ui.features.detail.DetailScreenRoute
 import com.app.storitest.ui.features.profile.profileGraph
 
 @Composable
@@ -33,6 +36,9 @@ fun HomeScreen(
             modifier = Modifier.padding(innerPadding)
         ) {
             homeListGraph(rootController = rootController)
+            composable<DetailScreenRoute> {
+                DetailScreen()
+            }
             profileGraph(rootController = navigationBarController)
         }
     }

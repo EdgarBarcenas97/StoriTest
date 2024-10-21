@@ -17,7 +17,7 @@ import com.app.storitest.ui.theme.WhiteStori
 @Composable
 fun TransactionsList(
     transactionUiList: List<TransactionUi>,
-    onTransactionListener: (Int) -> Unit,
+    onTransactionListener: (TransactionUi) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
@@ -25,10 +25,10 @@ fun TransactionsList(
             contentPadding = PaddingValues(horizontal = Space16),
             modifier = Modifier.background(WhiteStori).fillMaxWidth()
         ) {
-            itemsIndexed(transactionUiList) { index, it ->
+            itemsIndexed(transactionUiList) { _, it ->
                 TransactionCard(
                     transactionUi = it,
-                    onTransactionListener = { onTransactionListener(index) },
+                    onTransactionListener = { onTransactionListener(it) },
                     modifier = Modifier.padding(vertical = Space4)
                 )
             }
