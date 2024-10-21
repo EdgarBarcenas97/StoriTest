@@ -1,6 +1,7 @@
 package com.app.storitest.ui.features.home
 
 import com.app.storitest.R
+import com.app.storitest.ui.features.home.data.TransactionUi
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -19,6 +20,9 @@ sealed class BottomNavRoutes {
 
     @Serializable
     data object ProfileScreenRoute : BottomNavRoutes()
+
+    @Serializable
+    data class DetailScreenRoute(val transactionDetailUi: TransactionUi) : BottomNavRoutes()
 }
 
 enum class BottomNavigation(

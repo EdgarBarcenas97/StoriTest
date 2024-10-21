@@ -16,7 +16,6 @@ import androidx.navigation.toRoute
 import com.app.storitest.core.createNavType
 import com.app.storitest.ui.composables.BottomNavigationBar
 import com.app.storitest.ui.features.detail.DetailScreen
-import com.app.storitest.ui.features.detail.DetailScreenRoute
 import com.app.storitest.ui.features.home.data.TransactionUi
 import com.app.storitest.ui.features.profile.profileGraph
 import kotlin.reflect.typeOf
@@ -47,14 +46,14 @@ fun HomeScreen(
         ) {
             userUiModelState?.let {
                 homeListGraph(
-                    rootController = rootController,
+                    rootController = navigationBarController,
                     userUiModelState = it
                 )
             }
 
-            composable<DetailScreenRoute>(typeMap = mapOf(typeOf<TransactionUi>() to createNavType<TransactionUi>())) { backStackEntry ->
-                val transactionUi: TransactionUi = backStackEntry.toRoute()
-                DetailScreen(transactionUi)
+            composable<BottomNavRoutes.DetailScreenRoute>(typeMap = mapOf(typeOf<TransactionUi>() to createNavType<TransactionUi>())) { backStackEntry ->
+                val transactionUi: BottomNavRoutes.DetailScreenRoute = backStackEntry.toRoute()
+                DetailScreen(transactionUi.transactionDetailUi)
             }
 
             profileGraph(rootController = navigationBarController)
