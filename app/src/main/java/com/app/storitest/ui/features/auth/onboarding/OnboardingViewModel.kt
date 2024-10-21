@@ -9,15 +9,14 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class OnboardingViewModel @Inject constructor(private val settingsAuthUseCase: SettingsAuthUseCase,
                                               private val coroutinesDispatchers: CoroutinesDispatchers) : ViewModel() {
 
-    private var _initSession = MutableStateFlow(InitSession())
+    private var _initSession = MutableStateFlow(InitSession(isLoading = true))
     val initSession: StateFlow<InitSession> = _initSession.asStateFlow()
 
     init {
@@ -25,13 +24,13 @@ class OnboardingViewModel @Inject constructor(private val settingsAuthUseCase: S
     }
 
     private fun getSession() {
-        settingsAuthUseCase.readInitSession()
-            .flowOn(coroutinesDispatchers.io)
-            .onEach { isInitSession ->
-                _initSession.value = InitSession(isInitSession)
-            }
-            .launchIn(viewModelScope)
+        viewModelScope.launch(coroutinesDispatchers.io) {
+            val isInitSession = settingsAuthUseCase.readInitSession().first()
+            _initSession.value = InitSession(isInitSession = isInitSession, isLoading = false)
+        }
     }
+
+
 }
 
-data class InitSession(val isInitSession: Boolean? = null)
+data class InitSession(val isInitSession: Boolean = false, val isLoading: Boolean = true)

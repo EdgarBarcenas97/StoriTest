@@ -1,9 +1,15 @@
 package com.app.storitest.ui.features.auth.onboarding
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import kotlinx.coroutines.flow.first
 
 @Composable
 fun OnboardingScreen(
@@ -12,16 +18,23 @@ fun OnboardingScreen(
     onSignUpClick: () -> Unit,
     onboardingViewModel: OnboardingViewModel = hiltViewModel()
 ) {
-    val initSession by onboardingViewModel.initSession.collectAsState()
+    val initSessionState by onboardingViewModel.initSession.collectAsState()
 
-    initSession.isInitSession?.let {
-        if (it) {
-            onGoToHomeListener()
-        } else {
+    when {
+        initSessionState.isLoading -> {
+            Text(text = "Cargando...")
+        }
+        initSessionState.isInitSession -> {
+            LaunchedEffect(Unit) {
+                onGoToHomeListener()
+            }
+        }
+        else -> {
             OnboardingContent(
                 onSignInClick = onSignInClick,
                 onSignUpClick = onSignUpClick
             )
         }
     }
+
 }
