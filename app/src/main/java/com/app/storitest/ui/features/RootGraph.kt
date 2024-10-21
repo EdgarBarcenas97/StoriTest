@@ -21,7 +21,7 @@ fun RootGraph() {
             startDestination = AuthGraph
         ) {
             authGraph(rootController)
-            homeGraph(rootController)
+            homeGraph()
         }
     }
 }

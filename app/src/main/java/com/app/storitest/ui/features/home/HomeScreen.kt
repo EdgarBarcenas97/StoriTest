@@ -7,7 +7,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -16,7 +15,6 @@ import com.app.storitest.ui.features.profile.profileGraph
 
 @Composable
 fun HomeScreen(
-    rootController: NavHostController,
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
     val userUiModelState by homeViewModel.userUiModelState.collectAsState()
@@ -38,14 +36,10 @@ fun HomeScreen(
             startDestination = BottomNavRoutes.HomeListGraph,
             modifier = Modifier.padding(innerPadding)
         ) {
-            userUiModelState?.let {
-                homeListGraph(
-                    userUiModelState = it,
-                    onTransactionListener = {
-                        rootController.navigate(DetailScreenRoute(it))
-                    }
-                )
-            }
+            homeListGraph(
+                navigationBarController = navigationBarController,
+                userUiModelState = userUiModelState,
+            )
             profileGraph(rootController = navigationBarController)
         }
     }

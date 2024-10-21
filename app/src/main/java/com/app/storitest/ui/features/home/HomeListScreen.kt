@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import com.app.storitest.ui.composables.LoadingProgressBar
 import com.app.storitest.ui.features.home.data.TransactionUi
 import com.app.storitest.ui.features.home.data.UserUi
+import com.app.storitest.ui.features.home.data.UserUiModelState
 
 @Composable
 fun HomeListScreen(
@@ -44,22 +45,21 @@ fun HomeListScreenScaffold(
             )
         }
     ) { padding ->
-        when (userUiModelState) {
-            is UserUiModelState.Loading -> {
+        when {
+            userUiModelState.loading -> {
                 LoadingProgressBar(paddingTop = padding.calculateTopPadding())
             }
 
-            is UserUiModelState.Success -> {
+            userUiModelState.error != null -> {
+
+            }
+
+            userUiModelState.userUi != null -> {
                 HomeSuccess(
                     padding = padding,
                     userUi = userUiModelState.userUi,
                     onTransactionListener = onTransactionListener
                 )
-
-            }
-
-            is UserUiModelState.Error -> {
-
             }
         }
     }

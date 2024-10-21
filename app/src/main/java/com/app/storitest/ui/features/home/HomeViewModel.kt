@@ -5,11 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.app.storitest.core.CoroutinesDispatchers
 import com.app.storitest.domain.GetUserUseCase
 import com.app.storitest.domain.models.User
+import com.app.storitest.ui.features.home.data.UserUi
+import com.app.storitest.ui.features.home.data.UserUiModelState
 import com.app.storitest.ui.features.home.data.toUserUi
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,20 +19,16 @@ import kotlinx.coroutines.withContext
 class HomeViewModel @Inject constructor(private val getUserDataUseCase: GetUserUseCase,
                                         private val coroutinesDispatchers: CoroutinesDispatchers) : ViewModel() {
 
-    private val _userUiModelState = MutableStateFlow<UserUiModelState?>(null)
-    val userUiModelState: StateFlow<UserUiModelState?>
+    private val _userUiModelState = MutableStateFlow(UserUiModelState())
+    val userUiModelState: StateFlow<UserUiModelState>
         get() = _userUiModelState
-
-    private val _navigateToTransactionDetail = MutableSharedFlow<String>()
-    val navigateToTransactionDetail: SharedFlow<String>
-        get() = _navigateToTransactionDetail
 
     init {
         getUser()
     }
 
     private fun getUser() {
-        emitUserDataUiState(UserUiModelState.Loading)
+        emitUserDataUiState(loading = true)
         viewModelScope.launch(coroutinesDispatchers.io) {
             val result = getUserDataUseCase.getUser()
             withContext(coroutinesDispatchers.main) {
@@ -46,19 +42,17 @@ class HomeViewModel @Inject constructor(private val getUserDataUseCase: GetUserU
     }
 
     private fun getUserDataSuccess(result: User) {
-        emitUserDataUiState(UserUiModelState.Success(result.toUserUi()))
+        emitUserDataUiState(userUi = result.toUserUi())
     }
 
     private fun getUserError(result: Throwable) {
         result.printStackTrace()
-        emitUserDataUiState(UserUiModelState.Error(result))
+        emitUserDataUiState(error = result)
     }
 
-    private fun emitUserDataUiState(signUpUiState: UserUiModelState) {
-        _userUiModelState.value = signUpUiState
+    private fun emitUserDataUiState(loading: Boolean = false, userUi: UserUi? = null, error: Throwable? = null) {
+        val userUiModelState = UserUiModelState(loading = loading, userUi = userUi, error = error)
+        _userUiModelState.value = userUiModelState
     }
 
-    fun navigateToTransactionDetail(transactionId: String) = viewModelScope.launch {
-        _navigateToTransactionDetail.emit(transactionId)
-    }
 }

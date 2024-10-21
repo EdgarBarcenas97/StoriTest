@@ -11,7 +11,7 @@ import com.app.storitest.fakeData.ANY_TRANSACTIONS_ID
 import com.app.storitest.fakeData.givenUser
 import com.app.storitest.fakeData.givenUserUi
 import com.app.storitest.ui.features.home.HomeViewModel
-import com.app.storitest.ui.features.home.UserUiModelState
+import com.app.storitest.ui.features.home.data.UserUiModelState
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest

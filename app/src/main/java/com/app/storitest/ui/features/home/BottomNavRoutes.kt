@@ -7,9 +7,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data object HomeGraph
 
-@Serializable
-data class DetailScreenRoute(val transactionUi: TransactionUi)
-
 sealed class BottomNavRoutes {
 
     @Serializable
@@ -24,6 +21,8 @@ sealed class BottomNavRoutes {
     @Serializable
     data object ProfileScreenRoute : BottomNavRoutes()
 
+    @Serializable
+    data class DetailScreenRoute(val transactionUi: TransactionUi) : BottomNavRoutes()
 }
 
 enum class BottomNavigation(
