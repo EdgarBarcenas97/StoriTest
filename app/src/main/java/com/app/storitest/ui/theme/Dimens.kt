@@ -30,6 +30,7 @@ val Space32 = 32.dp
 val Space48 = 48.dp
 val Space64 = 64.dp
 val Space80 = 80.dp
+val Space200 = 200.dp
 val Space600 = 600.dp
 
 const val Weight1 = 1f

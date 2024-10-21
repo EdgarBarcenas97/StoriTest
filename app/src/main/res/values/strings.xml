@@ -15,4 +15,9 @@
     <string name="start_deleting_your_account_in_the_app">Start deleting your account in the app</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
+    <string name="create_account">Create account</string>
+    <string name="welcome">Welcome</string>
+    <string name="benefit1">Convenience and Flexibility</string>
+    <string name="benefit2">Building Credit and Rewards</string>
+    <string name="benefit3">Security and Protection</string>
 </resources>

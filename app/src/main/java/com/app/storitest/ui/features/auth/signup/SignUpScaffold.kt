@@ -1,5 +1,6 @@
 package com.app.storitest.ui.features.auth.signup
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -9,7 +10,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.app.storitest.core.extensions.empty
 import com.app.storitest.ui.composables.TopBar
@@ -28,6 +33,7 @@ fun SignUpScaffold(
     ) { padding ->
         val pagerState = rememberPagerState(pageCount = { SignUpPagerSize })
         val coroutineScope = rememberCoroutineScope()
+        var currentPhotoUri by remember { mutableStateOf(Uri.EMPTY) }
         HorizontalPager(
             state = pagerState,
             userScrollEnabled = false
@@ -52,8 +58,23 @@ fun SignUpScaffold(
                             coroutineScope.launch { pagerState.animateScrollToPage(PictureIndex) }
                         }
                     )
-                    PictureIndex -> PictureContent()
-                    WelcomeIndex -> WelcomeContent()
+
+                    PictureIndex -> PictureContent(
+                        photoUri = currentPhotoUri,
+                        onTakePhotoListener = { currentPhotoUri = it },
+                        onPreviousListener = {
+                            coroutineScope.launch { pagerState.animateScrollToPage(FormIndex) }
+                        },
+                        onSignUpListener = {
+                            coroutineScope.launch { pagerState.animateScrollToPage(WelcomeIndex) }
+                        }
+                    )
+
+                    WelcomeIndex -> WelcomeContent(
+                        onButtonClick = {
+
+                        }
+                    )
                 }
             }
         }

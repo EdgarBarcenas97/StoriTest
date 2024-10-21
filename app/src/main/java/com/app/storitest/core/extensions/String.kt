@@ -29,3 +29,5 @@ const val PASSWORD_PATTERN = "^" +
     "(?=\\S+$)" +
     ".{8,}" +
     "$"
+
+fun List<String>.addBullets() = joinToString(separator = "\n\u2022 ", prefix = "\u2022 ") { it }
