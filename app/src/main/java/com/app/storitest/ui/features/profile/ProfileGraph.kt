@@ -20,11 +20,6 @@ fun NavGraphBuilder.profileGraph(
     ) {
         composable<BottomNavRoutes.ProfileScreenRoute> {
             ProfileScreen(
-                personalDataUi = PersonalDataUi(
-                    firstName = "John",
-                    lastName = "Doe",
-                    email = "john.doe@gmail.com"
-                ),
                 onBackClick = { },
                 onLogoutClick = { },
                 onDeleteAccountClick = {
