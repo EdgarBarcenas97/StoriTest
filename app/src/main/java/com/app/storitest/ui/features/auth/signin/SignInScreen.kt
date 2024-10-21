@@ -9,6 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun SignInScreen(
     onBackClick: () -> Unit,
     onGoToHomeListener: () -> Unit,
+    onRegisterClick: () -> Unit,
     singInViewModel: SingInViewModel = hiltViewModel()
 ) {
     val signInUiModelState by singInViewModel.signInUiModelState.collectAsState()
@@ -20,7 +21,7 @@ fun SignInScreen(
             singInViewModel.signIn(email, password)
         },
         onGoToHomeListener = onGoToHomeListener,
-        onRegisterClick = {},
+        onRegisterClick = onRegisterClick,
         onForgotPasswordClick = {}
     )
 }

@@ -46,6 +46,9 @@ fun NavGraphBuilder.authGraph(
         composable<SignInScreenRoute> {
             SignInScreen(
                 onBackClick = { rootController.popBackStack() },
+                onRegisterClick  = {
+                    rootController.navigate(SignUpScreenRoute)
+                },
                 onGoToHomeListener = {
                     rootController.navigate(HomeGraph) {
                         popUpTo(rootController.graph.id) {
