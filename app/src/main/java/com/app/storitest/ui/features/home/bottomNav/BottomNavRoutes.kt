@@ -1,13 +1,9 @@
 package com.app.storitest.ui.features.home.bottomNav
 
 import com.app.storitest.R
-import com.app.storitest.ui.features.home.data.TransactionUi
 import kotlinx.serialization.Serializable
 
 sealed class BottomNavRoutes {
-
-    @Serializable
-    data object HomeInitGraph : BottomNavRoutes()
 
     @Serializable
     data object HomeListScreenRoute : BottomNavRoutes()
@@ -17,9 +13,6 @@ sealed class BottomNavRoutes {
 
     @Serializable
     data object ProfileScreenRoute : BottomNavRoutes()
-
-    @Serializable
-    data class DetailScreenRoute(val transactionUi: TransactionUi) : BottomNavRoutes()
 }
 
 enum class BottomNavigation(

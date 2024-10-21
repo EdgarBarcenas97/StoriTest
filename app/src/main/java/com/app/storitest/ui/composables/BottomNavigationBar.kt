@@ -27,7 +27,7 @@ fun BottomNavigationBar(
 ) {
 
     val navBackStackEntry by navHostController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route ?: BottomNavRoutes.HomeInitGraph::class.qualifiedName.orEmpty()
+    val currentRoute = navBackStackEntry?.destination?.route ?: BottomNavRoutes.HomeListScreenRoute::class.qualifiedName.orEmpty()
 
     val currentRouteTrimmed by remember(currentRoute) {
         derivedStateOf { currentRoute.substringBefore("?") }
