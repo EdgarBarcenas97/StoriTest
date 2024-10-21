@@ -54,12 +54,12 @@ perform a user login without having to create an account.
 ### Firebase Authentication
 To manage user login, Firebase Authentication was used with email and password.
 
-<img src="https://github.com/user-attachments/assets/e3c37a8c-4d05-47eb-a7f5-2f63dff16728" width="320"> 
+<img src="https://github.com/user-attachments/assets/e3c37a8c-4d05-47eb-a7f5-2f63dff16728" width="720"> 
 
 ### Firebase Storage
 All user picture identification are stored in Firebase Storage, and the picture url is saved in Firestorage like user data
 
-<img src="https://github.com/user-attachments/assets/75ccf73c-d8a3-4d71-907a-2dd352a99647" width="320"> 
+<img src="https://github.com/user-attachments/assets/75ccf73c-d8a3-4d71-907a-2dd352a99647" width="720"> 
 
 
 ### Firestore
@@ -67,12 +67,12 @@ Now to store the user data Firestore is used, having a collection `users` to sav
 
 **Users table**
 
-<img src="https://github.com/user-attachments/assets/5135ec5e-93fc-4326-a683-b7ba1dbaadf2" width="320"> 
+<img src="https://github.com/user-attachments/assets/5135ec5e-93fc-4326-a683-b7ba1dbaadf2" width="720"> 
 
 
 **Transactions table**
 
-<img src="https://github.com/user-attachments/assets/d9aef3d3-7250-4468-adc6-b4161a244ac3" width="320"> 
+<img src="https://github.com/user-attachments/assets/d9aef3d3-7250-4468-adc6-b4161a244ac3" width="720"> 
 
 ## :art: UI Test
 ### Onboarding
@@ -82,7 +82,7 @@ Now to store the user data Firestore is used, having a collection `users` to sav
 
 Sign In Success | Some Fiel is Wrong | User Invalid
 --- | ---  | --- 
-<img src="https://github.com/user-attachments/assets/b79689b1-4c97-471c-b1d6-26b94f12a44a" width="320"> | <img src="https://github.com/user-attachments/assets/07c16f0f-29fd-4e4a-bfa9-6bb2fdd7c790" width="320"> | <img src="https://github.com/user-attachments/assets/9ed7d7c5-f6b9-44cf-8fa5-c7fb86ea009b" width="320">
+<img src="https://github.com/user-attachments/assets/b79689b1-4c97-471c-b1d6-26b94f12a44a" width="220"> | <img src="https://github.com/user-attachments/assets/07c16f0f-29fd-4e4a-bfa9-6bb2fdd7c790" width="220"> | <img src="https://github.com/user-attachments/assets/9ed7d7c5-f6b9-44cf-8fa5-c7fb86ea009b" width="220">
 
 ### Sign Up
 
@@ -90,13 +90,13 @@ Sign In Success | Some Fiel is Wrong | User Invalid
 
 Sign Up Form Success | Sign Up Form is Wrong | User al readey Exist
 --- | ---  | --- 
-<img src="https://github.com/user-attachments/assets/fa246feb-de53-4ed4-a020-11891f92ef23" width="320"> | <img src="https://github.com/user-attachments/assets/cdf3c397-e4cc-4a43-957f-3654694b09dd" width="320"> | <img src="https://github.com/user-attachments/assets/36769115-20f4-46f8-996e-466f6cc0d886" width="320">
+<img src="https://github.com/user-attachments/assets/fa246feb-de53-4ed4-a020-11891f92ef23" width="220"> | <img src="https://github.com/user-attachments/assets/cdf3c397-e4cc-4a43-957f-3654694b09dd" width="220"> | <img src="https://github.com/user-attachments/assets/36769115-20f4-46f8-996e-466f6cc0d886" width="220">
 
 ### Home
 
 Home New User | Home New With Transactions
 --- | --- 
-<img src="https://github.com/user-attachments/assets/40588a82-501a-4a5a-afee-74b0b017d7f1" width="320"> | <img src="https://github.com/user-attachments/assets/66aca275-2804-4c2c-bb27-7ce1eda512a0" width="320"> 
+<img src="https://github.com/user-attachments/assets/40588a82-501a-4a5a-afee-74b0b017d7f1" width="220"> | <img src="https://github.com/user-attachments/assets/66aca275-2804-4c2c-bb27-7ce1eda512a0" width="220"> 
 
 ### Profile
 <img src="https://github.com/user-attachments/assets/0d4dff8a-c643-4f91-b17a-a4119f03bb18" width="320"> 
