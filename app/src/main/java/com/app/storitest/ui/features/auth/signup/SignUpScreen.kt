@@ -1,15 +1,20 @@
 package com.app.storitest.ui.features.auth.signup
 
 import androidx.compose.runtime.Composable
-import com.app.storitest.ui.composables.form.personalData.PersonalDataUi
+import androidx.compose.runtime.collectAsState
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun SignUpScreen(
     onBackClick: () -> Unit,
-    onRegisterClick: (personalDataUi: PersonalDataUi, password: String) -> Unit
+    onGoToHomeListener: () -> Unit,
+    singUpViewModel: SingUpViewModel = hiltViewModel()
 ) {
+    val uiState = singUpViewModel.signUpUiModelState.collectAsState()
     SignUpScaffold(
         onBackClick = onBackClick,
-        onRegisterClick = onRegisterClick
+        onRegisterClick = {
+            singUpViewModel.saveUserRegisterUi(it)
+        }
     )
 }

@@ -32,6 +32,12 @@ class SingUpViewModel @Inject constructor(private val signUpUseCase: SignUpUseCa
     val navigateToHome: SharedFlow<Unit>
         get() = _navigateToHome
 
+    private var userRegisterUi: UserRegisterUi? = null
+
+    fun saveUserRegisterUi(userRegisterUi: UserRegisterUi) {
+        this.userRegisterUi = userRegisterUi
+    }
+
     fun singUp(userRegisterUi: UserRegisterUi) {
         emitSignInUiState(SignUpUiModelState.Loading)
         viewModelScope.launch(coroutinesDispatchers.io) {

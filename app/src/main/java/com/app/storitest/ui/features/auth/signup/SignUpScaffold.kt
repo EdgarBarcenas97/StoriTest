@@ -9,14 +9,17 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import com.app.storitest.core.extensions.empty
 import com.app.storitest.ui.composables.TopBar
-import com.app.storitest.ui.composables.form.personalData.PersonalDataUi
+import com.app.storitest.ui.features.auth.signup.models.UserRegisterUi
+import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpScaffold(
     onBackClick: () -> Unit,
-    onRegisterClick: (personalDataUi: PersonalDataUi, password: String) -> Unit
+    onRegisterClick: (userRegisterUi: UserRegisterUi) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -24,6 +27,7 @@ fun SignUpScaffold(
         }
     ) { padding ->
         val pagerState = rememberPagerState(pageCount = { SignUpPagerSize })
+        val coroutineScope = rememberCoroutineScope()
         HorizontalPager(
             state = pagerState,
             userScrollEnabled = false
@@ -35,7 +39,19 @@ fun SignUpScaffold(
                     .verticalScroll(rememberScrollState())
             ) {
                 when (it) {
-                    FormIndex -> FormContent(onRegisterClick = onRegisterClick)
+                    FormIndex -> FormContent(
+                        onRegisterClick = { personalDataUi, password ->
+                            onRegisterClick(
+                                UserRegisterUi(
+                                    fistName = personalDataUi.firstName,
+                                    lastName = personalDataUi.lastName,
+                                    email = personalDataUi.email,
+                                    password = password,
+                                    pictureIdentification = String.empty())
+                            )
+                            coroutineScope.launch { pagerState.animateScrollToPage(PictureIndex) }
+                        }
+                    )
                     PictureIndex -> PictureContent()
                     WelcomeIndex -> WelcomeContent()
                 }

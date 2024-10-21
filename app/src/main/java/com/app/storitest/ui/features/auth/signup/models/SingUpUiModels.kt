@@ -6,7 +6,6 @@ data class UserRegisterUi(val fistName: String,
                           val lastName: String,
                           val email: String,
                           val password: String,
-                          val confirmPassword: String,
                           val pictureIdentification: String)
 
 fun UserRegisterUi.toUserRegister() = UserRegister(

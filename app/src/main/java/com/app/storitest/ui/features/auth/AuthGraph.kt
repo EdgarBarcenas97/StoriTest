@@ -44,7 +44,7 @@ fun NavGraphBuilder.authGraph(
                 onBackClick = {
                     rootController.popBackStack()
                 },
-                onRegisterClick = { email, password ->
+                onGoToHomeListener = {
                     rootController.navigate(HomeGraph) {
                         popUpTo(rootController.graph.id) {
                             inclusive = true
