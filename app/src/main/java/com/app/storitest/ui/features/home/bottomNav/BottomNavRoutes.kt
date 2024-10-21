@@ -1,16 +1,13 @@
-package com.app.storitest.ui.features.home
+package com.app.storitest.ui.features.home.bottomNav
 
 import com.app.storitest.R
 import com.app.storitest.ui.features.home.data.TransactionUi
 import kotlinx.serialization.Serializable
 
-@Serializable
-data object HomeGraph
-
 sealed class BottomNavRoutes {
 
     @Serializable
-    data object HomeListGraph : BottomNavRoutes()
+    data object HomeInitGraph : BottomNavRoutes()
 
     @Serializable
     data object HomeListScreenRoute : BottomNavRoutes()

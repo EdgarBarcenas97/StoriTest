@@ -7,6 +7,7 @@ import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import com.app.storitest.core.createNavType
 import com.app.storitest.ui.features.detail.DetailScreen
+import com.app.storitest.ui.features.home.bottomNav.BottomNavRoutes
 import com.app.storitest.ui.features.home.data.TransactionUi
 import com.app.storitest.ui.features.home.data.UserUiModelState
 import kotlin.reflect.typeOf
@@ -15,7 +16,7 @@ fun NavGraphBuilder.homeListGraph(
     navigationBarController: NavHostController,
     userUiModelState: UserUiModelState,
 ) {
-    navigation<BottomNavRoutes.HomeListGraph>(
+    navigation<BottomNavRoutes.HomeInitGraph>(
         startDestination = BottomNavRoutes.HomeListScreenRoute
     ) {
         composable<BottomNavRoutes.HomeListScreenRoute> {

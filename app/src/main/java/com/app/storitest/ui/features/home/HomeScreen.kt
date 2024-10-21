@@ -11,6 +11,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.app.storitest.ui.composables.BottomNavigationBar
+import com.app.storitest.ui.features.home.bottomNav.BottomNavRoutes
+import com.app.storitest.ui.features.home.bottomNav.BottomNavigation
 import com.app.storitest.ui.features.profile.profileGraph
 
 @Composable
@@ -33,14 +35,14 @@ fun HomeScreen(
     ) { innerPadding ->
         NavHost(
             navController = navigationBarController,
-            startDestination = BottomNavRoutes.HomeListGraph,
+            startDestination = BottomNavRoutes.HomeInitGraph,
             modifier = Modifier.padding(innerPadding)
         ) {
             homeListGraph(
                 navigationBarController = navigationBarController,
                 userUiModelState = userUiModelState,
             )
-            profileGraph(rootController = navigationBarController)
+            profileGraph(navigationBarController = navigationBarController)
         }
     }
 }

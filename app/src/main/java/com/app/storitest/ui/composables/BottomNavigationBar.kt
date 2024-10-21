@@ -17,8 +17,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.app.storitest.core.extensions.one
-import com.app.storitest.ui.features.home.BottomNavRoutes
-import com.app.storitest.ui.features.home.BottomNavigation
+import com.app.storitest.ui.features.home.bottomNav.BottomNavRoutes
+import com.app.storitest.ui.features.home.bottomNav.BottomNavigation
 import com.app.storitest.ui.theme.GreenStori
 
 @Composable
@@ -27,7 +27,7 @@ fun BottomNavigationBar(
 ) {
 
     val navBackStackEntry by navHostController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route ?: BottomNavRoutes.HomeListGraph::class.qualifiedName.orEmpty()
+    val currentRoute = navBackStackEntry?.destination?.route ?: BottomNavRoutes.HomeInitGraph::class.qualifiedName.orEmpty()
 
     val currentRouteTrimmed by remember(currentRoute) {
         derivedStateOf { currentRoute.substringBefore("?") }

@@ -15,6 +15,7 @@ import com.app.storitest.ui.composables.LoadingProgressBar
 import com.app.storitest.ui.features.home.data.TransactionUi
 import com.app.storitest.ui.features.home.data.UserUi
 import com.app.storitest.ui.features.home.data.UserUiModelState
+import com.app.storitest.ui.features.home.list.TransactionsList
 
 @Composable
 fun HomeListScreen(

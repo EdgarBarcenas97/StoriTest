@@ -5,15 +5,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import app.app.temis.features.profile.delete.DeleteAccountScreen
-import com.app.storitest.ui.composables.form.personalData.PersonalDataUi
-import com.app.storitest.ui.features.home.BottomNavRoutes
+import com.app.storitest.ui.features.home.bottomNav.BottomNavRoutes
 import kotlinx.serialization.Serializable
 
 @Serializable
 data object DeleteAccountScreenRoute
 
 fun NavGraphBuilder.profileGraph(
-    rootController: NavHostController
+    navigationBarController: NavHostController
 ) {
     navigation<BottomNavRoutes.ProfileGraph>(
         startDestination = BottomNavRoutes.ProfileScreenRoute
@@ -23,7 +22,7 @@ fun NavGraphBuilder.profileGraph(
                 onBackClick = { },
                 onLogoutClick = { },
                 onDeleteAccountClick = {
-                    rootController.navigate(DeleteAccountScreenRoute)
+                    navigationBarController.navigate(DeleteAccountScreenRoute)
                 },
                 onPersonalDataClick = {
 

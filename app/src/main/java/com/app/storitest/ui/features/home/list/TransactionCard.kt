@@ -1,4 +1,4 @@
-package com.app.storitest.ui.features.home
+package com.app.storitest.ui.features.home.list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
