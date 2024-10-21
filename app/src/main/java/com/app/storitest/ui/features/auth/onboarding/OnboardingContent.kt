@@ -32,9 +32,11 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
+import com.app.storitest.R
 import com.app.storitest.core.toast
 import com.app.storitest.ui.theme.BlackStori
 import com.app.storitest.ui.theme.Space16
@@ -54,18 +56,20 @@ fun OnboardingContent(
 ) {
     val pages = listOf(
         mapOf(
-            "title" to "Welcome to Wheels",
-            "subtitle" to "Let's find you a bike",
+            "title" to stringResource(R.string.welcome_to_stori),
+            "subtitle" to stringResource(R.string.let_s_find_you_a_credit),
             "image" to "https://images.unsplash.com/photo-1475666675596-cca2035b3d79",
-        ), mapOf(
-        "title" to "Find a bike in any town",
-        "subtitle" to "With over 5,000 spots world wide, we always got you covered",
-        "image" to "https://images.unsplash.com/photo-1605028241606-ca01277aa15c",
-    ), mapOf(
-        "title" to "Safety above all",
-        "subtitle" to "Travel with peace of mind, thanks to our safety features",
-        "image" to "https://images.unsplash.com/photo-1517305349393-aad1f0ee4328",
-    )
+        ),
+        mapOf(
+            "title" to stringResource(R.string.find_credit_for_anyone),
+            "subtitle" to stringResource(R.string.number_credit),
+            "image" to "https://images.unsplash.com/photo-1605028241606-ca01277aa15c",
+        ),
+        mapOf(
+            "title" to stringResource(R.string.safety_above_all),
+            "subtitle" to stringResource(R.string.onboarding_3),
+            "image" to "https://images.unsplash.com/photo-1517305349393-aad1f0ee4328",
+        )
     )
     val pagerState = rememberPagerState { pages.size }
 
@@ -129,7 +133,7 @@ fun OnboardingContent(
             val currentPage = pagerState.currentPage
             repeat(pages.size) { iteration ->
                 val color = if (currentPage == iteration) Color.White else Color.Gray
-                val size by animateDpAsState(if (currentPage == iteration) Space8 else Space6)
+                val size by animateDpAsState(if (currentPage == iteration) Space8 else Space6, label = "")
                 Box(
                     modifier = Modifier.size(Space8),
                     contentAlignment = Alignment.Center
@@ -159,7 +163,7 @@ fun OnboardingContent(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = "Create account",
+                    text = stringResource(R.string.create_new_account),
                     color = BlackStori,
                     modifier = Modifier.padding(vertical = Space8)
                 )
@@ -170,7 +174,7 @@ fun OnboardingContent(
                 colors = ButtonDefaults.textButtonColors(contentColor = Color.White)
             ) {
                 Text(
-                    text = "Log in",
+                    text = stringResource(R.string.log_in),
                     color = WhiteStori
                 )
             }

@@ -37,4 +37,12 @@
     <string name="error_password_different">La contraseña es diferente</string>
     <string name="error_get_data">Error al obtener la información</string>
     <string name="take_photo">Take Photo</string>
+    <string name="create_new_account">Create account</string>
+    <string name="log_in">Log in</string>
+    <string name="onboarding_3">Have your credit with peace of mind, thanks to our security elements</string>
+    <string name="safety_above_all">Safety above all</string>
+    <string name="number_credit">With over 5,000 spots world wide, we always got you covered</string>
+    <string name="find_credit_for_anyone">Find credit for anyone.</string>
+    <string name="let_s_find_you_a_credit">Let\'s find you a credit</string>
+    <string name="welcome_to_stori">Welcome to Stori</string>
 </resources>
