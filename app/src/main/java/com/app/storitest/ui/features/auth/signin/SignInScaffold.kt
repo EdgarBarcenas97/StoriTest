@@ -17,13 +17,20 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.app.storitest.R
+import com.app.storitest.data.exception.AuthException
+import com.app.storitest.ui.composables.LaunchSnackbar
+import com.app.storitest.ui.composables.LoadingProgressBar
+import com.app.storitest.ui.composables.SnackbarBlue
 import com.app.storitest.ui.composables.form.login.LoginForm
 import com.app.storitest.ui.composables.form.login.rememberLoginFormState
 import com.app.storitest.ui.theme.Space16
@@ -35,11 +42,14 @@ import com.app.storitest.ui.theme.Space8
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignInScaffold(
+    signInUiModelState: SignInUiModelState? = null,
     onBackClick: () -> Unit,
+    onGoToHomeListener: () -> Unit,
     onLoginClick: (email: String, password: String) -> Unit,
     onRegisterClick: () -> Unit,
     onForgotPasswordClick: () -> Unit
 ) {
+    val snackbarHostState = remember { SnackbarHostState() }
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -50,8 +60,21 @@ fun SignInScaffold(
                     }
                 }
             )
-        }
+        },
+        snackbarHost = { SnackbarBlue(snackbarHostState) }
     ) { padding ->
+
+        when (signInUiModelState) {
+            is SignInUiModelState.Loading -> LoadingProgressBar(paddingTop = padding.calculateTopPadding())
+            is SignInUiModelState.Success -> {
+                LaunchedEffect(Unit) {
+                    onGoToHomeListener()
+                }
+            }
+            is SignInUiModelState.Error -> SnackbarError(errorException = signInUiModelState.error, snackbarHostState)
+            else -> {}
+        }
+
         Column(
             modifier = Modifier
                 .padding(padding)
@@ -101,4 +124,23 @@ fun SignInScaffold(
             }
         }
     }
+}
+
+
+@Composable
+private fun SnackbarError(
+    errorException: Throwable?,
+    snackbarHostState: SnackbarHostState
+) = errorException?.run {
+    LaunchSnackbar(
+        snackbarHostState = snackbarHostState,
+        message = getMessageError(this)
+    )
+}
+
+@Composable
+private fun getMessageError(errorException: Throwable) = when (errorException) {
+    is AuthException.SignUpException -> stringResource(id = R.string.error_sign_up)
+    is AuthException.UserAlreadyExistException -> stringResource(id = R.string.error_user_already_exit)
+    else -> errorException.message.orEmpty()
 }
