@@ -10,6 +10,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -24,6 +25,10 @@ fun HomeListScreen(
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
     val userUiModelState by homeViewModel.userUiModelState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        homeViewModel.getUser()
+    }
 
     userUiModelState?.let {
         HomeListScreenScaffold(

@@ -9,12 +9,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.app.storitest.core.createNavType
 import com.app.storitest.ui.composables.BottomNavigationBar
 import com.app.storitest.ui.features.detail.DetailScreen
 import com.app.storitest.ui.features.detail.DetailScreenRoute
-import com.app.storitest.ui.features.home.data.TransactionDetailUi
+import com.app.storitest.ui.features.home.data.TransactionUi
 import com.app.storitest.ui.features.profile.profileGraph
-import kotlinx.serialization.json.Json
+import kotlin.reflect.typeOf
 
 @Composable
 fun HomeScreen(
@@ -38,11 +40,13 @@ fun HomeScreen(
             modifier = Modifier.padding(innerPadding)
         ) {
             homeListGraph(rootController = rootController)
-            composable<DetailScreenRoute> { backStackEntry ->
-                val transactionDetailUiJson = backStackEntry.arguments?.getString("transactionDetailUi")
-                val transactionDetailUi = Json.decodeFromString<TransactionDetailUi>(transactionDetailUiJson!!)
-                DetailScreen(transactionDetailUi)
+
+
+            composable<DetailScreenRoute>(typeMap = mapOf(typeOf<TransactionUi>() to createNavType<TransactionUi>())) { backStackEntry ->
+                val transactionUi: TransactionUi = backStackEntry.toRoute()
+                DetailScreen(transactionUi)
             }
+
             profileGraph(rootController = navigationBarController)
         }
     }

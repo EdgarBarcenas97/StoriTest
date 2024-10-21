@@ -5,6 +5,7 @@ import com.app.storitest.domain.models.Transaction
 import com.app.storitest.domain.models.TransactionDetail
 import com.app.storitest.domain.models.User
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 data class UserUi(val firstName: String,
                   val lastName: String,
@@ -12,18 +13,19 @@ data class UserUi(val firstName: String,
                   var picture: String,
                   val transactions: List<TransactionUi>)
 
+@Serializable
+@Parcelize
 data class TransactionUi(val id: String,
                          val name: String,
                          val date: String,
-                         val amount: String)
+                         val amount: String): Parcelable
 
-@Parcelize
 data class TransactionDetailUi(val name: String,
                                val date: String,
                                val amount: String,
                                val card: String,
                                val reference: String,
-                               val category: String) : Parcelable
+                               val category: String)
 
 fun User.toUserUi() = UserUi(
     firstName = firstName,

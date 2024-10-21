@@ -16,14 +16,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import com.app.storitest.ui.features.home.data.TransactionDetailUi
+import com.app.storitest.ui.features.home.data.TransactionUi
 import com.app.storitest.ui.theme.Space16
 import com.app.storitest.ui.theme.Space4
 import com.app.storitest.ui.theme.Space64
 
 @Composable
 fun TransactionDetail(
-    transactionDetailUi: TransactionDetailUi,
+    transactionUi: TransactionUi,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -40,13 +40,13 @@ fun TransactionDetail(
         //        .background(color = Purple40, shape = CircleShape)
         //)
         Text(
-            text = transactionDetailUi.name,
+            text = transactionUi.name,
             style = MaterialTheme.typography.displaySmall,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
         )
         Text(
-            text = transactionDetailUi.amount,
+            text = transactionUi.amount,
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
         )
@@ -55,7 +55,7 @@ fun TransactionDetail(
             style = MaterialTheme.typography.bodyMedium
         )
         Text(
-            text = transactionDetailUi.date,
+            text = transactionUi.date,
             style = MaterialTheme.typography.titleMedium
         )
         Text(
@@ -63,17 +63,14 @@ fun TransactionDetail(
             style = MaterialTheme.typography.bodyMedium
         )
         Text(
-            text = transactionDetailUi.date,
+            text = transactionUi.date,
             style = MaterialTheme.typography.titleMedium
         )
         Text(
             text = "Category",
             style = MaterialTheme.typography.bodyMedium
         )
-        Text(
-            text = transactionDetailUi.category,
-            style = MaterialTheme.typography.titleMedium
-        )
+
         Spacer(modifier = Modifier.height(Space16))
         Button(
             onClick = { },

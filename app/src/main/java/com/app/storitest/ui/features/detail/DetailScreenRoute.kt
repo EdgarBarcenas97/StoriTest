@@ -1,15 +1,15 @@
 package com.app.storitest.ui.features.detail
 
 import androidx.compose.runtime.Composable
-import com.app.storitest.ui.features.home.data.TransactionDetailUi
+import com.app.storitest.ui.features.home.data.TransactionUi
 import kotlinx.serialization.Serializable
 
 @Serializable
-data object DetailScreenRoute
+data class DetailScreenRoute(val transactionDetailUi: TransactionUi)
 
 @Composable
-fun DetailScreen(transactionDetailUi: TransactionDetailUi) {
+fun DetailScreen(transactionUi: TransactionUi) {
     TransactionDetail(
-        transactionDetailUi = transactionDetailUi
+        transactionUi = transactionUi
     )
 }
