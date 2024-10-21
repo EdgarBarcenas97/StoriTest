@@ -99,7 +99,7 @@ Home New User | Home New With Transactions
 <img src="https://github.com/user-attachments/assets/40588a82-501a-4a5a-afee-74b0b017d7f1" width="220"> | <img src="https://github.com/user-attachments/assets/66aca275-2804-4c2c-bb27-7ce1eda512a0" width="220"> 
 
 ### Profile
-<img src="https://github.com/user-attachments/assets/0d4dff8a-c643-4f91-b17a-a4119f03bb18" width="320"> 
+<img src="https://github.com/user-attachments/assets/0d4dff8a-c643-4f91-b17a-a4119f03bb18" width="220"> 
 
 ### Movement Detail
 
