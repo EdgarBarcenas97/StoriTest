@@ -76,7 +76,7 @@ Now to store the user data Firestore is used, having a collection `users` to sav
 
 ## :art: UI Test
 ### Onboarding
-<img src="https://github.com/user-attachments/assets/99968560-7114-405c-83c8-c47caf8b3a0a" width="320"> 
+<img src="https://github.com/user-attachments/assets/99968560-7114-405c-83c8-c47caf8b3a0a" width="220"> 
 
 ### Sign In
 
@@ -86,7 +86,7 @@ Sign In Success | Some Fiel is Wrong | User Invalid
 
 ### Sign Up
 
-<img src="https://github.com/user-attachments/assets/e702c970-ca37-4cfa-a9a2-5070fc2fb099" width="320">
+<img src="https://github.com/user-attachments/assets/e702c970-ca37-4cfa-a9a2-5070fc2fb099" width="220">
 
 Sign Up Form Success | Sign Up Form is Wrong | User al readey Exist
 --- | ---  | --- 
