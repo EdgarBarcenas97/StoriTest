@@ -1,22 +1,20 @@
 package com.app.storitest.ui.features.home
 
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.app.storitest.ui.features.home.data.TransactionUi
 
 fun NavGraphBuilder.homeListGraph(
-    rootController: NavHostController,
-    userUiModelState: UserUiModelState
+    userUiModelState: UserUiModelState,
+    onTransactionListener: (TransactionUi) -> Unit,
 ) {
     navigation<BottomNavRoutes.HomeListGraph>(
         startDestination = BottomNavRoutes.HomeListScreenRoute
     ) {
         composable<BottomNavRoutes.HomeListScreenRoute> {
             HomeListScreen(
-                onTransactionListener = {
-                    rootController.navigate(BottomNavRoutes.DetailScreenRoute(it))
-                },
+                onTransactionListener = onTransactionListener,
                 userUiModelState = userUiModelState
             )
         }
