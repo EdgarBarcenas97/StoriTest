@@ -1,16 +1,28 @@
 package com.app.storitest.ui.features.detail
 
 import androidx.compose.runtime.Composable
-import com.app.storitest.ui.features.home.data.TransactionUi
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class DetailScreenRoute(val transactionUi: TransactionUi)
+data class DetailScreenRoute(val id: String)
 
 @Composable
-fun DetailScreen(transactionUi: TransactionUi) {
-    TransactionDetail(
-        transactionUi = transactionUi
-    )
+fun DetailScreen(
+    id: String,
+    transactionDetailViewModel: TransactionDetailViewModel = hiltViewModel(),
+) {
+    transactionDetailViewModel.getTransactionDetail(id)
+
+    val transactionDetailUiModelState by transactionDetailViewModel.transactionDetailUiModelState.collectAsState()
+
+    transactionDetailUiModelState?.let {
+        TransactionDetail(
+            transactionDetailUiModelState = it
+        )
+    }
+
 }

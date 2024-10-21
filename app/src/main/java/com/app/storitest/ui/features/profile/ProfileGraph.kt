@@ -19,7 +19,6 @@ fun NavGraphBuilder.profileGraph(
     ) {
         composable<BottomNavRoutes.ProfileScreenRoute> {
             ProfileScreen(
-                onBackClick = { },
                 onLogoutClick = { },
                 onDeleteAccountClick = {
                     navigationBarController.navigate(DeleteAccountScreenRoute)

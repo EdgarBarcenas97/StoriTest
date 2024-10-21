@@ -12,14 +12,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -30,7 +27,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.app.storitest.R
@@ -38,12 +34,10 @@ import com.app.storitest.ui.composables.LoadingProgressBar
 import com.app.storitest.ui.features.home.data.UserUi
 import com.app.storitest.ui.theme.Space16
 import com.app.storitest.ui.theme.Space200
-import com.app.storitest.ui.theme.Space64
 import com.app.storitest.ui.theme.Space8
 
 @Composable
 fun ProfileScreen(
-    onBackClick: () -> Unit,
     onPersonalDataClick: () -> Unit,
     onDeleteAccountClick: () -> Unit,
     onLogoutClick: () -> Unit,
@@ -52,7 +46,6 @@ fun ProfileScreen(
     val profileUiModelState by profileViewModel.profileUiModelState.collectAsState()
     profileUiModelState?.let {
         ProfileScaffold(
-            onBackClick = onBackClick,
             onPersonalDataClick = onPersonalDataClick,
             onDeleteAccountClick = onDeleteAccountClick,
             onLogoutClick = onLogoutClick,
@@ -63,7 +56,6 @@ fun ProfileScreen(
 
 @Composable
 fun ProfileScaffold(
-    onBackClick: () -> Unit,
     onPersonalDataClick: () -> Unit,
     onDeleteAccountClick: () -> Unit,
     onLogoutClick: () -> Unit,
@@ -71,7 +63,7 @@ fun ProfileScaffold(
 ) = profileUiModelState.run {
     Scaffold(
         topBar = {
-            TopBar(onBackClick)
+            TopBar()
         }
     ) { padding ->
         when (this) {
@@ -116,16 +108,11 @@ fun ProfileSuccess(
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun TopBar(onBackClick: () -> Unit) {
+private fun TopBar() {
     CenterAlignedTopAppBar(
         title = {
             Text(text = stringResource(R.string.profile))
         },
-        navigationIcon = {
-            IconButton(onClick = onBackClick) {
-                Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
-            }
-        }
     )
 }
 

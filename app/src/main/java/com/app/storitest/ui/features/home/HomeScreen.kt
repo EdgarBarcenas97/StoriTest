@@ -12,15 +12,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.app.storitest.core.createNavType
 import com.app.storitest.ui.composables.BottomNavigationBar
 import com.app.storitest.ui.features.detail.DetailScreen
 import com.app.storitest.ui.features.detail.DetailScreenRoute
 import com.app.storitest.ui.features.home.bottomNav.BottomNavRoutes
 import com.app.storitest.ui.features.home.bottomNav.BottomNavigation
-import com.app.storitest.ui.features.home.data.TransactionUi
 import com.app.storitest.ui.features.profile.profileGraph
-import kotlin.reflect.typeOf
 
 @Composable
 fun HomeScreen(
@@ -48,7 +45,7 @@ fun HomeScreen(
             composable<BottomNavRoutes.HomeListScreenRoute> {
                 ListScaffold(
                     onTransactionListener = {
-                        navigationBarController.navigate(DetailScreenRoute(it))
+                        navigationBarController.navigate(DetailScreenRoute(it.id))
                     },
                     userUiModelState = userUiModelState
                 )
@@ -56,11 +53,9 @@ fun HomeScreen(
 
             profileGraph(navigationBarController = navigationBarController)
 
-            composable<DetailScreenRoute>(
-                typeMap = mapOf(typeOf<TransactionUi>() to createNavType<TransactionUi>())
-            ) { backStackEntry ->
-                val transactionUi: DetailScreenRoute = backStackEntry.toRoute()
-                DetailScreen(transactionUi.transactionUi)
+            composable<DetailScreenRoute>{ backStackEntry ->
+                val detailScreenRoute: DetailScreenRoute = backStackEntry.toRoute()
+                DetailScreen(detailScreenRoute.id)
             }
         }
     }

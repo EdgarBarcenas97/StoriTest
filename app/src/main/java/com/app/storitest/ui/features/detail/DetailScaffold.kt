@@ -23,66 +23,69 @@ import com.app.storitest.ui.theme.Space64
 
 @Composable
 fun TransactionDetail(
-    transactionUi: TransactionUi,
+    transactionDetailUiModelState: TransactionDetailUiModelState,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(Space4),
-        horizontalAlignment = Alignment.Start
-    ) {
-        //AsyncImage(
-        //    model = transactionDetailUi.imageUrl,
-        //    contentDescription = null,
-        //    modifier = Modifier
-        //        .size(Space128)
-        //        .align(alignment = Alignment.CenterHorizontally)
-        //        .background(color = Purple40, shape = CircleShape)
-        //)
-        Text(
-            text = transactionUi.name,
-            style = MaterialTheme.typography.displaySmall,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
-        )
-        Text(
-            text = transactionUi.amount,
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
-        )
-        Text(
-            text = "Date",
-            style = MaterialTheme.typography.bodyMedium
-        )
-        Text(
-            text = transactionUi.date,
-            style = MaterialTheme.typography.titleMedium
-        )
-        Text(
-            text = "Time",
-            style = MaterialTheme.typography.bodyMedium
-        )
-        Text(
-            text = transactionUi.date,
-            style = MaterialTheme.typography.titleMedium
-        )
-        Text(
-            text = "Category",
-            style = MaterialTheme.typography.bodyMedium
-        )
 
-        Spacer(modifier = Modifier.height(Space16))
-        Button(
-            onClick = { },
-            modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
+    if (transactionDetailUiModelState is TransactionDetailUiModelState.Success) {
+        Column(
+            modifier = modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(Space4),
+            horizontalAlignment = Alignment.Start
         ) {
-            Icon(
-                imageVector = Icons.Filled.Warning,
-                contentDescription = null
+            //AsyncImage(
+            //    model = transactionDetailUi.imageUrl,
+            //    contentDescription = null,
+            //    modifier = Modifier
+            //        .size(Space128)
+            //        .align(alignment = Alignment.CenterHorizontally)
+            //        .background(color = Purple40, shape = CircleShape)
+            //)
+            Text(
+                text = transactionDetailUiModelState.transactionDetailUi.name,
+                style = MaterialTheme.typography.displaySmall,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
             )
-            Text(text = "Report movement")
+            Text(
+                text = transactionDetailUiModelState.transactionDetailUi.amount,
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
+            )
+            Text(
+                text = "Date",
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Text(
+                text = transactionDetailUiModelState.transactionDetailUi.date,
+                style = MaterialTheme.typography.titleMedium
+            )
+            Text(
+                text = "Time",
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Text(
+                text = transactionDetailUiModelState.transactionDetailUi.date,
+                style = MaterialTheme.typography.titleMedium
+            )
+            Text(
+                text = "Category",
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+            Spacer(modifier = Modifier.height(Space16))
+            Button(
+                onClick = { },
+                modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Warning,
+                    contentDescription = null
+                )
+                Text(text = "Report movement")
+            }
+            Spacer(modifier = Modifier.height(Space64))
         }
-        Spacer(modifier = Modifier.height(Space64))
     }
 }
 
