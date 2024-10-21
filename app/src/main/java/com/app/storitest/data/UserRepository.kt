@@ -1,6 +1,6 @@
 package com.app.storitest.data
 
-import com.app.storitest.data.datasource.UserRemoteDataSource
+import com.app.storitest.data.datasource.remote.UserRemoteDataSource
 import com.app.storitest.domain.models.toTransactionDetail
 import com.app.storitest.domain.models.toResultUser
 import javax.inject.Inject

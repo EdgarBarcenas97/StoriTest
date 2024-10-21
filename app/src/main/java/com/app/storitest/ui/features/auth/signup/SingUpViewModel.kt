@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.storitest.core.CoroutinesDispatchers
 import com.app.storitest.core.extensions.empty
+import com.app.storitest.domain.SettingsSessionUseCase
 import com.app.storitest.domain.SignUpUseCase
 import com.app.storitest.ui.features.auth.signup.models.UserRegisterUi
 import com.app.storitest.ui.features.auth.signup.models.toUserRegister
@@ -19,6 +20,7 @@ import kotlinx.coroutines.withContext
 
 @HiltViewModel
 class SingUpViewModel @Inject constructor(private val signUpUseCase: SignUpUseCase,
+                                          private val settingsSessionUseCase: SettingsSessionUseCase,
                                           private val coroutinesDispatchers: CoroutinesDispatchers) : ViewModel() {
 
     private val _signUpUiModelState = MutableStateFlow<SignUpUiModelState?>(null)
@@ -60,6 +62,9 @@ class SingUpViewModel @Inject constructor(private val signUpUseCase: SignUpUseCa
     }
 
     private fun signUpSuccess() {
+        viewModelScope.launch(coroutinesDispatchers.io) {
+            settingsSessionUseCase.setSession()
+        }
         emitSignInUiState(SignUpUiModelState.Success)
     }
 

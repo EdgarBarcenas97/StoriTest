@@ -2,8 +2,8 @@ package com.app.storitest.data
 
 import com.app.storitest.core.assertThatEquals
 import com.app.storitest.core.assertThatIsInstanceOf
-import com.app.storitest.data.datasource.AuthRemoteDataSource
-import com.app.storitest.data.datasource.UserRemoteDataSource
+import com.app.storitest.data.datasource.remote.AuthRemoteDataSource
+import com.app.storitest.data.datasource.remote.UserRemoteDataSource
 import com.app.storitest.data.exception.AuthException
 import com.app.storitest.data.exception.UserException
 import com.app.storitest.fakeData.ANY_LOCAL_PICTURE_USER

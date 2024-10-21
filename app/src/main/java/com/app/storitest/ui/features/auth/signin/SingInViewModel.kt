@@ -3,6 +3,8 @@ package com.app.storitest.ui.features.auth.signin
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.storitest.core.CoroutinesDispatchers
+import com.app.storitest.domain.SettingsAuthUseCase
+import com.app.storitest.domain.SettingsSessionUseCase
 import com.app.storitest.domain.SignInUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,6 +17,7 @@ import kotlinx.coroutines.withContext
 
 @HiltViewModel
 class SingInViewModel @Inject constructor(private val signInUseCase: SignInUseCase,
+                                          private val settingsSessionUseCase: SettingsSessionUseCase,
                                           private val coroutinesDispatchers: CoroutinesDispatchers) : ViewModel() {
 
     private val _signInUiModelState = MutableStateFlow<SignInUiModelState?>(null)
@@ -44,6 +47,9 @@ class SingInViewModel @Inject constructor(private val signInUseCase: SignInUseCa
     }
 
     private fun signInSuccess() {
+        viewModelScope.launch(coroutinesDispatchers.io) {
+            settingsSessionUseCase.setSession()
+        }
         emitSignInUiState(SignInUiModelState.Success)
     }
 

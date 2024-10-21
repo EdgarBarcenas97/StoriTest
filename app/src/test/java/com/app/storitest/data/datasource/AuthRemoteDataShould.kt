@@ -1,5 +1,6 @@
 package com.app.storitest.data.datasource
 
+import com.app.storitest.data.datasource.remote.AuthRemoteDataSource
 import com.app.storitest.fakeData.ANY_PASSWORD
 import com.app.storitest.fakeData.ANY_USER_EMAIL
 import com.google.android.gms.tasks.Task

@@ -1,4 +1,4 @@
-package com.app.storitest.data.datasource
+package com.app.storitest.data.datasource.remote
 
 import com.app.storitest.data.exception.AuthException
 import com.google.firebase.auth.FirebaseAuth

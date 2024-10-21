@@ -1,7 +1,7 @@
 package com.app.storitest.data
 
-import com.app.storitest.data.datasource.AuthRemoteDataSource
-import com.app.storitest.data.datasource.UserRemoteDataSource
+import com.app.storitest.data.datasource.remote.AuthRemoteDataSource
+import com.app.storitest.data.datasource.remote.UserRemoteDataSource
 import com.app.storitest.domain.models.UserRegister
 import com.app.storitest.domain.models.toUserRegisterMap
 import javax.inject.Inject

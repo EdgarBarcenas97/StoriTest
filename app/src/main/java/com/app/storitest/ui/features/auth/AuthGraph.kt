@@ -1,10 +1,12 @@
 package com.app.storitest.ui.features.auth
 
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.app.storitest.ui.features.auth.onboarding.OnboardingScreen
+import com.app.storitest.ui.features.auth.onboarding.OnboardingViewModel
 import com.app.storitest.ui.features.auth.signin.SignInScreen
 import com.app.storitest.ui.features.auth.signup.SignUpScreen
 import com.app.storitest.ui.features.home.HomeGraph
@@ -31,7 +33,14 @@ fun NavGraphBuilder.authGraph(
         composable<OnboardingScreenRoute> {
             OnboardingScreen(
                 onSignInClick = { rootController.navigate(SignInScreenRoute) },
-                onSignUpClick = { rootController.navigate(SignUpScreenRoute) }
+                onSignUpClick = { rootController.navigate(SignUpScreenRoute) },
+                onGoToHomeListener = {
+                    rootController.navigate(HomeGraph) {
+                        popUpTo(rootController.graph.id) {
+                            inclusive = true
+                        }
+                    }
+                }
             )
         }
         composable<SignInScreenRoute> {

@@ -1,4 +1,4 @@
-package com.app.storitest.data.datasource
+package com.app.storitest.data.datasource.remote
 
 import android.net.Uri
 import com.app.storitest.data.exception.UserException

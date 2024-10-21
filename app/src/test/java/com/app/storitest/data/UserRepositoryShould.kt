@@ -2,7 +2,7 @@ package com.app.storitest.data
 
 import com.app.storitest.core.assertThatEquals
 import com.app.storitest.core.assertThatIsInstanceOf
-import com.app.storitest.data.datasource.UserRemoteDataSource
+import com.app.storitest.data.datasource.remote.UserRemoteDataSource
 import com.app.storitest.data.exception.UserException
 import com.app.storitest.data.models.TransactionDetailFirestore
 import com.app.storitest.data.models.UserFirestore
