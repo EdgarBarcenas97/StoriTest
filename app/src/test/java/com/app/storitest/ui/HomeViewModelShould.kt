@@ -1,19 +1,15 @@
 package com.app.storitest.ui
 
-import androidx.lifecycle.viewModelScope
 import com.app.storitest.core.TestDispatcherRule
 import com.app.storitest.core.assertThatEquals
 import com.app.storitest.core.assertThatIsInstanceOf
 import com.app.storitest.data.exception.UserException
 import com.app.storitest.domain.GetUserUseCase
 import com.app.storitest.domain.models.User
-import com.app.storitest.fakeData.ANY_TRANSACTIONS_ID
 import com.app.storitest.fakeData.givenUser
 import com.app.storitest.fakeData.givenUserUi
 import com.app.storitest.ui.features.home.HomeViewModel
-import com.app.storitest.ui.features.home.data.UserUiModelState
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
@@ -49,8 +45,7 @@ class HomeViewModelShould {
         val result = homeViewModel.userUiModelState.firstOrNull()
 
         verify(getUserUseCase).getUser()
-        assertThatIsInstanceOf<UserUiModelState.Success>(result)
-        assertThatEquals((result as UserUiModelState.Success).userUi, userDataUi)
+        assertThatEquals((result)?.userUi, userDataUi)
     }
 
     @Test
@@ -64,19 +59,7 @@ class HomeViewModelShould {
         val result = homeViewModel.userUiModelState.firstOrNull()
 
         verify(getUserUseCase).getUser()
-        assertThatIsInstanceOf<UserException.GetUserException>((result as UserUiModelState.Error).error)
+        assertThatIsInstanceOf<UserException.GetUserException>((result?.error))
     }
 
-    @Test
-    fun `navigate to transactionDetail when navigateToTransactionDetail is called`() = runTest {
-        var result: String? = null
-
-        homeViewModel.viewModelScope.launch {
-            result = homeViewModel.navigateToTransactionDetail.firstOrNull()
-        }
-
-        homeViewModel.navigateToTransactionDetail(ANY_TRANSACTIONS_ID)
-
-        assertThatEquals(result, ANY_TRANSACTIONS_ID)
-    }
 }

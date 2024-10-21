@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(private val getUserDataUseCase: GetUserU
         getUser()
     }
 
-    private fun getUser() {
+    fun getUser() {
         emitUserDataUiState(loading = true)
         viewModelScope.launch(coroutinesDispatchers.io) {
             val result = getUserDataUseCase.getUser()
