@@ -22,11 +22,6 @@ import com.app.storitest.ui.theme.Space4
 import com.app.storitest.ui.theme.Space64
 
 @Composable
-fun DetailScaffold() {
-
-}
-
-@Composable
 fun TransactionDetail(
     transactionDetailUi: TransactionDetailUi,
     modifier: Modifier = Modifier
