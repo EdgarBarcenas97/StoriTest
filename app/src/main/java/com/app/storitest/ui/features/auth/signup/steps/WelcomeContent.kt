@@ -1,4 +1,4 @@
-package com.app.storitest.ui.features.auth.signup
+package com.app.storitest.ui.features.auth.signup.steps
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

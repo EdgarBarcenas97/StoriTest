@@ -1,4 +1,4 @@
-package com.app.storitest.ui.features.auth.signup
+package com.app.storitest.ui.features.auth.signup.steps
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult

@@ -1,5 +1,6 @@
 package com.app.storitest.ui.features.auth.signup
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.storitest.core.CoroutinesDispatchers
@@ -24,6 +25,10 @@ class SingUpViewModel @Inject constructor(private val signUpUseCase: SignUpUseCa
     val signUpUiModelState: StateFlow<SignUpUiModelState?>
         get() = _signUpUiModelState
 
+    private val _userRegisterUiModelState = MutableStateFlow<UserRegisterUi?>(null)
+    val userRegisterUiModelState: StateFlow<UserRegisterUi?>
+        get() = _userRegisterUiModelState
+
     private val _pictureUiModelState = MutableStateFlow(String.empty())
     val pictureUiModelState: StateFlow<String>
         get() = _pictureUiModelState
@@ -32,10 +37,12 @@ class SingUpViewModel @Inject constructor(private val signUpUseCase: SignUpUseCa
     val navigateToHome: SharedFlow<Unit>
         get() = _navigateToHome
 
-    private var userRegisterUi: UserRegisterUi? = null
-
     fun saveUserRegisterUi(userRegisterUi: UserRegisterUi) {
-        this.userRegisterUi = userRegisterUi
+        _userRegisterUiModelState.value = userRegisterUi
+    }
+
+    fun savePictureUi(uri: Uri) {
+        _userRegisterUiModelState.value = _userRegisterUiModelState.value?.copy(pictureIdentification = uri.toString())
     }
 
     fun singUp(userRegisterUi: UserRegisterUi) {

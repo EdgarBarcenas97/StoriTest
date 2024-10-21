@@ -41,7 +41,7 @@ fun NavGraphBuilder.authGraph(
         }
         composable<SignUpScreenRoute> {
             SignUpScreen(
-                onBackClick = {
+                onBackListener = {
                     rootController.popBackStack()
                 },
                 onGoToHomeListener = {

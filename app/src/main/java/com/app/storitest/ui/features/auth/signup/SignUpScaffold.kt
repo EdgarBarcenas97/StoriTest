@@ -19,16 +19,21 @@ import androidx.compose.ui.Modifier
 import com.app.storitest.core.extensions.empty
 import com.app.storitest.ui.composables.TopBar
 import com.app.storitest.ui.features.auth.signup.models.UserRegisterUi
+import com.app.storitest.ui.features.auth.signup.steps.FormContent
+import com.app.storitest.ui.features.auth.signup.steps.PictureContent
+import com.app.storitest.ui.features.auth.signup.steps.WelcomeContent
 import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpScaffold(
-    onBackClick: () -> Unit,
-    onRegisterClick: (userRegisterUi: UserRegisterUi) -> Unit
+    onBackListener: () -> Unit,
+    onSaveFormDataListener: (userRegisterUi: UserRegisterUi) -> Unit,
+    onSavePictureListener: (photoUri: Uri) -> Unit,
+    onRegisterUserListener: () -> Unit
 ) {
     Scaffold(
         topBar = {
-            TopBar(onBackClick = onBackClick)
+            TopBar(onBackClick = onBackListener)
         }
     ) { padding ->
         val pagerState = rememberPagerState(pageCount = { SignUpPagerSize })
@@ -47,13 +52,14 @@ fun SignUpScaffold(
                 when (it) {
                     FormIndex -> FormContent(
                         onRegisterClick = { personalDataUi, password ->
-                            onRegisterClick(
+                            onSaveFormDataListener(
                                 UserRegisterUi(
                                     fistName = personalDataUi.firstName,
                                     lastName = personalDataUi.lastName,
                                     email = personalDataUi.email,
                                     password = password,
-                                    pictureIdentification = String.empty())
+                                    pictureIdentification = String.empty()
+                                )
                             )
                             coroutineScope.launch { pagerState.animateScrollToPage(PictureIndex) }
                         }
@@ -61,7 +67,10 @@ fun SignUpScaffold(
 
                     PictureIndex -> PictureContent(
                         photoUri = currentPhotoUri,
-                        onTakePhotoListener = { currentPhotoUri = it },
+                        onTakePhotoListener = {
+                            currentPhotoUri = it
+                            onSavePictureListener(it)
+                        },
                         onPreviousListener = {
                             coroutineScope.launch { pagerState.animateScrollToPage(FormIndex) }
                         },
@@ -70,11 +79,7 @@ fun SignUpScaffold(
                         }
                     )
 
-                    WelcomeIndex -> WelcomeContent(
-                        onButtonClick = {
-
-                        }
-                    )
+                    WelcomeIndex -> WelcomeContent(onButtonClick = onRegisterUserListener)
                 }
             }
         }
