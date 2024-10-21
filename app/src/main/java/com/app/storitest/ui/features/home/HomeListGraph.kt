@@ -7,7 +7,8 @@ import androidx.navigation.navigation
 import com.app.storitest.ui.features.detail.DetailScreenRoute
 
 fun NavGraphBuilder.homeListGraph(
-    rootController: NavHostController
+    rootController: NavHostController,
+    userUiModelState: UserUiModelState
 ) {
     navigation<BottomNavRoutes.HomeListGraph>(
         startDestination = BottomNavRoutes.HomeListScreenRoute
@@ -16,7 +17,8 @@ fun NavGraphBuilder.homeListGraph(
             HomeListScreen(
                 onTransactionListener = {
                     rootController.navigate(DetailScreenRoute(it))
-                }
+                },
+                userUiModelState = userUiModelState
             )
         }
     }

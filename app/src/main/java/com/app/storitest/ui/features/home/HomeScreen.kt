@@ -3,7 +3,10 @@ package com.app.storitest.ui.features.home
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,8 +23,11 @@ import kotlin.reflect.typeOf
 
 @Composable
 fun HomeScreen(
-    rootController: NavHostController
+    rootController: NavHostController,
+    homeViewModel: HomeViewModel = hiltViewModel()
 ) {
+    val userUiModelState by homeViewModel.userUiModelState.collectAsState()
+
     val navigationBarController = rememberNavController()
 
     val showBottomBar = navigationBarController
@@ -39,8 +45,12 @@ fun HomeScreen(
             startDestination = BottomNavRoutes.HomeListGraph,
             modifier = Modifier.padding(innerPadding)
         ) {
-            homeListGraph(rootController = rootController)
-
+            userUiModelState?.let {
+                homeListGraph(
+                    rootController = rootController,
+                    userUiModelState = it
+                )
+            }
 
             composable<DetailScreenRoute>(typeMap = mapOf(typeOf<TransactionUi>() to createNavType<TransactionUi>())) { backStackEntry ->
                 val transactionUi: TransactionUi = backStackEntry.toRoute()

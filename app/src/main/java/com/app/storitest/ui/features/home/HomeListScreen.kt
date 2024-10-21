@@ -10,11 +10,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.app.storitest.ui.composables.LoadingProgressBar
 import com.app.storitest.ui.features.home.data.TransactionUi
 import com.app.storitest.ui.features.home.data.UserUi
@@ -22,20 +18,12 @@ import com.app.storitest.ui.features.home.data.UserUi
 @Composable
 fun HomeListScreen(
     onTransactionListener: (TransactionUi) -> Unit,
-    homeViewModel: HomeViewModel = hiltViewModel()
+    userUiModelState: UserUiModelState
 ) {
-    val userUiModelState by homeViewModel.userUiModelState.collectAsState()
-
-    LaunchedEffect(Unit) {
-        homeViewModel.getUser()
-    }
-
-    userUiModelState?.let {
-        HomeListScreenScaffold(
-            userUiModelState = it,
-            onTransactionListener = onTransactionListener
-        )
-    }
+    HomeListScreenScaffold(
+        userUiModelState = userUiModelState,
+        onTransactionListener = onTransactionListener
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

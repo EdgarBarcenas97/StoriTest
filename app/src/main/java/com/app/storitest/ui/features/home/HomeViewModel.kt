@@ -27,7 +27,11 @@ class HomeViewModel @Inject constructor(private val getUserDataUseCase: GetUserU
     val navigateToTransactionDetail: SharedFlow<String>
         get() = _navigateToTransactionDetail
 
-    fun getUser() {
+    init {
+        getUser()
+    }
+
+    private fun getUser() {
         emitUserDataUiState(UserUiModelState.Loading)
         viewModelScope.launch(coroutinesDispatchers.io) {
             val result = getUserDataUseCase.getUser()
