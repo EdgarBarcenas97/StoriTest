@@ -15,9 +15,26 @@
     <string name="start_deleting_your_account_in_the_app">Start deleting your account in the app</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
-    <string name="create_account">Create account</string>
+    <string name="create_account">Init</string>
     <string name="welcome">Welcome</string>
     <string name="benefit1">Convenience and Flexibility</string>
     <string name="benefit2">Building Credit and Rewards</string>
     <string name="benefit3">Security and Protection</string>
+    <string name="error">Error</string>
+
+    <!--Messages-->
+    <string name="error_user_already_exit">El usuario ya se encuentra registrado</string>
+    <string name="error_sign_up">Error al registrar el usuario</string>
+    <string name="success_sign_up">Usuario registrado con éxito</string>
+    <string name="error_sign_in">Usuario Inválido</string>
+    <string name="accept">Aceptar</string>
+
+    <string name="error_picture_identification_invalid">Añade una foto de tu Identificación</string>
+    <string name="error_first_name_invalid">Nombre Inválido</string>
+    <string name="error_last_name_invalid">Apellido Inválido</string>
+    <string name="error_email_invalid">Correo Inválido</string>
+    <string name="error_password_invalid">Contraseña Inválida, debe contener una minúscula, una mayúscula, un número y un caracter especial</string>
+    <string name="error_password_different">La contraseña es diferente</string>
+    <string name="error_get_data">Error al obtener la información</string>
+    <string name="take_photo">Take Photo</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.app.storitest.ui.features.auth.signup.steps
+package com.app.storitest.ui.features.auth.signup.form
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -27,7 +27,7 @@ import com.app.storitest.ui.theme.Space8
 
 @Composable
 fun WelcomeContent(
-    onButtonClick: () -> Unit
+    onGoToHomeListener: () -> Unit
 ) {
     val bullets = listOf(
         stringResource(R.string.benefit1),
@@ -66,7 +66,7 @@ fun WelcomeContent(
                 .padding(bottom = Space200)
         )
         Button(
-            onClick = onButtonClick,
+            onClick = onGoToHomeListener,
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
