@@ -28,18 +28,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.app.storitest.R
-import com.app.storitest.ui.composables.form.personalData.PersonalData
+import com.app.storitest.ui.composables.form.personalData.PersonalDataUi
 
 @Composable
 fun ProfileScreen(
-    personalData: PersonalData,
+    personalDataUi: PersonalDataUi,
     onBackClick: () -> Unit,
     onPersonalDataClick: () -> Unit,
     onDeleteAccountClick: () -> Unit,
     onLogoutClick: () -> Unit
 ) {
     ProfileScaffold(
-        personalData = personalData,
+        personalDataUi = personalDataUi,
         onBackClick = onBackClick,
         onPersonalDataClick = onPersonalDataClick,
         onDeleteAccountClick = onDeleteAccountClick,
@@ -49,7 +49,7 @@ fun ProfileScreen(
 
 @Composable
 fun ProfileScaffold(
-    personalData: PersonalData,
+    personalDataUi: PersonalDataUi,
     onBackClick: () -> Unit,
     onPersonalDataClick: () -> Unit,
     onDeleteAccountClick: () -> Unit,
@@ -66,7 +66,7 @@ fun ProfileScaffold(
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-            PersonalDataSection(personalData = personalData, onClick = onPersonalDataClick)
+            PersonalDataSection(personalDataUi = personalDataUi, onClick = onPersonalDataClick)
             HorizontalDivider()
             DeleteAccountItem(onClick = onDeleteAccountClick)
             LogoutItem(onClick = onLogoutClick)
@@ -91,7 +91,7 @@ private fun TopBar(onBackClick: () -> Unit) {
 }
 
 @Composable
-private fun PersonalDataSection(personalData: PersonalData, onClick: () -> Unit) {
+private fun PersonalDataSection(personalDataUi: PersonalDataUi, onClick: () -> Unit) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Bottom,
@@ -107,14 +107,10 @@ private fun PersonalDataSection(personalData: PersonalData, onClick: () -> Unit)
                 modifier = Modifier.size(64.dp)
             )
             Text(
-                text = "${personalData.firstName} ${personalData.lastName}",
+                text = "${personalDataUi.firstName} ${personalDataUi.lastName}",
                 style = MaterialTheme.typography.titleLarge
             )
-            Text(text = personalData.email, style = MaterialTheme.typography.bodyMedium)
-            Text(
-                text = personalData.phoneNumber,
-                style = MaterialTheme.typography.bodyMedium
-            )
+            Text(text = personalDataUi.email, style = MaterialTheme.typography.bodyMedium)
         }
         Icon(imageVector = Icons.Default.ChevronRight, contentDescription = null)
     }

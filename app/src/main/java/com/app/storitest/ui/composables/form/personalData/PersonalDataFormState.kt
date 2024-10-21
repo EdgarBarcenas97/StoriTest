@@ -14,24 +14,22 @@ import com.app.storitest.ui.composables.rememberTextFieldState
 class PersonalDataFormState(
     val firstName: TextFieldState,
     val lastName: TextFieldState,
-    val email: EmailFieldState,
-    val phoneNumber: TextFieldState
+    val email: EmailFieldState
 ) {
 
-    val isValid: Boolean by derivedStateOf { firstName.isValid && lastName.isValid && email.isValid && phoneNumber.isValid }
+    val isValid: Boolean by derivedStateOf { firstName.isValid && lastName.isValid && email.isValid }
 
-    var personalData: PersonalData
-        get() = PersonalData(
+    var personalDataUi: PersonalDataUi
+        get() = PersonalDataUi(
             firstName = firstName.value,
             lastName = lastName.value,
-            email = email.value,
-            phoneNumber = phoneNumber.value,
+            email = email.value
         )
         set(value) {
             firstName.value = value.firstName
             lastName.value = value.lastName
             email.onValueChanged(value.email)
-            phoneNumber.value = value.phoneNumber
+
         }
 }
 
@@ -40,8 +38,7 @@ fun rememberPersonalDataFormState(): PersonalDataFormState {
     val firstName = rememberTextFieldState()
     val lastName = rememberTextFieldState()
     val email = rememberEmailFieldState()
-    val phoneNumber = rememberTextFieldState()
-    return remember(firstName, lastName, email, phoneNumber) {
-        PersonalDataFormState(firstName, lastName, email, phoneNumber)
+    return remember(firstName, lastName, email, ) {
+        PersonalDataFormState(firstName, lastName, email)
     }
 }

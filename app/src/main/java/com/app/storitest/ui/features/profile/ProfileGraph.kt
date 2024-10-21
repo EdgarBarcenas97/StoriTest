@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import app.app.temis.features.profile.delete.DeleteAccountScreen
-import com.app.storitest.ui.composables.form.personalData.PersonalData
+import com.app.storitest.ui.composables.form.personalData.PersonalDataUi
 import com.app.storitest.ui.features.home.BottomNavRoutes
 import kotlinx.serialization.Serializable
 
@@ -20,11 +20,10 @@ fun NavGraphBuilder.profileGraph(
     ) {
         composable<BottomNavRoutes.ProfileScreenRoute> {
             ProfileScreen(
-                personalData = PersonalData(
+                personalDataUi = PersonalDataUi(
                     firstName = "John",
                     lastName = "Doe",
-                    email = "john.doe@gmail.com",
-                    phoneNumber = "+48 123 456 789",
+                    email = "john.doe@gmail.com"
                 ),
                 onBackClick = { },
                 onLogoutClick = { },

@@ -1,96 +1,50 @@
 package com.app.storitest.ui.features.auth.signup
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Button
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import com.app.storitest.R
-import com.app.storitest.ui.composables.form.personalData.PersonalData
-import com.app.storitest.ui.composables.form.registration.RegistrationForm
-import com.app.storitest.ui.composables.form.registration.rememberRegistrationFormState
+import com.app.storitest.ui.composables.TopBar
+import com.app.storitest.ui.composables.form.personalData.PersonalDataUi
 
 @Composable
 fun SignUpScaffold(
     onBackClick: () -> Unit,
-    onRegisterClick: (personalData: PersonalData, password: String) -> Unit
+    onRegisterClick: (personalDataUi: PersonalDataUi, password: String) -> Unit
 ) {
     Scaffold(
         topBar = {
             TopBar(onBackClick = onBackClick)
         }
     ) { padding ->
-        Column(
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
+        val pagerState = rememberPagerState(pageCount = { SignUpPagerSize })
+        HorizontalPager(
+            state = pagerState,
+            userScrollEnabled = false
         ) {
-            val formState = rememberRegistrationFormState()
-
-            LaunchedEffect(Unit) {
-                formState.personalData.run {
-                    firstName.value = "John"
-                    lastName.value = "Doe"
-                    email.onValueChanged("john.doe@gmail.com")
-                    phoneNumber.value = "123456789"
-                }
-                formState.passwords.run {
-                    firstPassword.onValueChanged("StrongPassword123")
-                    secondPassword.onValueChanged("StrongPassword123")
-                }
-            }
-
-            RegistrationForm(
-                state = formState,
-                modifier = Modifier.padding(16.dp)
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Button(
-                onClick = {
-                    onRegisterClick(
-                        formState.personalData.personalData,
-                        formState.passwords.firstPassword.value
-                    )
-                },
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                enabled = formState.isValid,
+                    .padding(padding)
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
             ) {
-                Text(text = stringResource(R.string.register))
+                when (it) {
+                    FormIndex -> FormContent(onRegisterClick = onRegisterClick)
+                    PictureIndex -> PictureContent()
+                    WelcomeIndex -> WelcomeContent()
+                }
             }
         }
     }
 }
 
-@Composable
-@OptIn(ExperimentalMaterial3Api::class)
-private fun TopBar(onBackClick: () -> Unit) {
-    CenterAlignedTopAppBar(
-        title = {
-            Text(text = stringResource(R.string.register))
-        },
-        navigationIcon = {
-            IconButton(onClick = onBackClick) {
-                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
-            }
-        }
-    )
-}
+private const val SignUpPagerSize = 3
+private const val FormIndex = 0
+private const val PictureIndex = 1
+private const val WelcomeIndex = 2

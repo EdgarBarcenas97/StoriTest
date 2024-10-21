@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import com.app.storitest.ui.composables.form.password.PasswordsForm
 import com.app.storitest.ui.composables.form.personalData.PersonalDataForm
 import com.app.storitest.ui.theme.Space16
+import com.app.storitest.ui.theme.Space8
 
 @Composable
 fun RegistrationForm(
@@ -15,7 +16,7 @@ fun RegistrationForm(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(Space16)
+        verticalArrangement = Arrangement.spacedBy(Space8)
     ) {
         PersonalDataForm(state = state.personalData)
         PasswordsForm(state = state.passwords)

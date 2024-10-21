@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Phone
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -36,12 +35,6 @@ fun PersonalDataForm(
         )
         EmailField(
             state = state.email,
-            modifier = Modifier.fillMaxWidth()
-        )
-        TextField(
-            icon = Icons.Default.Phone,
-            label = stringResource(R.string.phone_number),
-            state = state.phoneNumber,
             modifier = Modifier.fillMaxWidth()
         )
     }
