@@ -53,9 +53,14 @@ fun HomeScreen(
 
             profileGraph(navigationBarController = navigationBarController)
 
-            composable<DetailScreenRoute>{ backStackEntry ->
+            composable<DetailScreenRoute> { backStackEntry ->
                 val detailScreenRoute: DetailScreenRoute = backStackEntry.toRoute()
-                DetailScreen(detailScreenRoute.id)
+                DetailScreen(
+                    id = detailScreenRoute.id,
+                    onBackListener = {
+                        navigationBarController.popBackStack()
+                    }
+                )
             }
         }
     }

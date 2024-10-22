@@ -55,10 +55,7 @@ class UserRemoteDataSource @Inject constructor(private val firebaseAuth: Firebas
     }
 
     suspend fun getTransactionDetail(transactionId: String): Result<TransactionDetailFirestore?> = suspendCoroutine { continuation ->
-        val userId = firebaseAuth.currentUser?.uid.orEmpty()
-        firebaseFirestore.collection(USERS_COLLECTION)
-            .document(userId)
-            .collection(TRANSACTIONS_COLLECTION)
+        firebaseFirestore.collection(TRANSACTIONS_COLLECTION)
             .document(transactionId)
             .get()
             .addOnSuccessListener {
