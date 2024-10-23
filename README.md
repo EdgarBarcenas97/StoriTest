@@ -123,4 +123,5 @@ You can also create a user from scratch to test Sign Up
 ```
 /gradlew test
 ```
+<img src="https://github.com/user-attachments/assets/01f7a542-1dd7-48fa-bd44-116c5fc8f115" width="220"> 
 
