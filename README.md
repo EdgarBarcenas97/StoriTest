@@ -104,9 +104,8 @@ Home New User | Home New With Transactions
 ### Profile
 <img src="https://github.com/user-attachments/assets/0d4dff8a-c643-4f91-b17a-a4119f03bb18" width="220"> 
 
-### Movement Detail
-
-
+### Transaction Detail
+<img src="https://github.com/user-attachments/assets/ca277b71-d0e6-440c-b899-85fa5d160db5" width="220"> 
 
 ## :green_heart: How did you test it?
 
