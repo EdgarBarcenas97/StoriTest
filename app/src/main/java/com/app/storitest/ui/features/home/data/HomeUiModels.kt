@@ -18,7 +18,7 @@ data class UserUi(val firstName: String,
 data class TransactionUi(val id: String,
                          val name: String,
                          val date: String,
-                         val amount: String): Parcelable
+                         val amount: String) : Parcelable
 
 data class TransactionDetailUi(val name: String,
                                val date: String,
