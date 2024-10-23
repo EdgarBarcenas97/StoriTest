@@ -5,6 +5,7 @@ import com.app.storitest.core.TestDispatcherRule
 import com.app.storitest.core.assertThatEquals
 import com.app.storitest.core.assertThatIsInstanceOf
 import com.app.storitest.data.exception.AuthException
+import com.app.storitest.domain.SettingsSessionUseCase
 import com.app.storitest.domain.SignInUseCase
 import com.app.storitest.fakeData.ANY_PASSWORD
 import com.app.storitest.fakeData.ANY_USER_EMAIL
@@ -27,12 +28,13 @@ class SingInViewModelShould {
     var testDispatcherRule = TestDispatcherRule()
 
     private val signInUseCase = mock<SignInUseCase>()
+    private val settingsSessionUseCase = mock<SettingsSessionUseCase>()
 
     private lateinit var singInViewModel: SingInViewModel
 
     @Before
     fun setup() {
-        singInViewModel = SingInViewModel(signInUseCase, testDispatcherRule.coroutinesDispatchers)
+        singInViewModel = SingInViewModel(signInUseCase, settingsSessionUseCase, testDispatcherRule.coroutinesDispatchers)
     }
 
 

@@ -63,7 +63,6 @@ fun givenUserRegisterUi() = UserRegisterUi(
     lastName = ANY_LAST_NAME,
     email = ANY_USER_EMAIL,
     password = ANY_PASSWORD,
-    confirmPassword = ANY_PASSWORD,
     pictureIdentification = ANY_PICTURE)
 
 fun givenUserRegisterUiWithInvalidPictureUser() = UserRegisterUi(
@@ -71,7 +70,6 @@ fun givenUserRegisterUiWithInvalidPictureUser() = UserRegisterUi(
     lastName = ANY_LAST_NAME,
     email = ANY_USER_EMAIL,
     password = ANY_PASSWORD,
-    confirmPassword = ANY_PASSWORD,
     pictureIdentification = String.empty())
 
 fun givenUserRegisterUiWithInvalidFirstName() = UserRegisterUi(
@@ -79,7 +77,6 @@ fun givenUserRegisterUiWithInvalidFirstName() = UserRegisterUi(
     lastName = ANY_LAST_NAME,
     email = ANY_USER_EMAIL,
     password = ANY_PASSWORD,
-    confirmPassword = ANY_PASSWORD,
     pictureIdentification = ANY_PICTURE)
 
 fun givenUserRegisterUiWithInvalidLastName() = UserRegisterUi(
@@ -87,7 +84,6 @@ fun givenUserRegisterUiWithInvalidLastName() = UserRegisterUi(
     lastName = ANY_INVALID_LAST_NAME,
     email = ANY_USER_EMAIL,
     password = ANY_PASSWORD,
-    confirmPassword = ANY_PASSWORD,
     pictureIdentification = ANY_PICTURE)
 
 fun givenUserRegisterUiWithInvalidEmail() = UserRegisterUi(
@@ -95,7 +91,6 @@ fun givenUserRegisterUiWithInvalidEmail() = UserRegisterUi(
     lastName = ANY_LAST_NAME,
     email = ANY_INVALID_USER_EMAIL,
     password = ANY_PASSWORD,
-    confirmPassword = ANY_PASSWORD,
     pictureIdentification = ANY_PICTURE)
 
 fun givenUserRegisterUiWithInvalidPassword() = UserRegisterUi(
@@ -103,7 +98,6 @@ fun givenUserRegisterUiWithInvalidPassword() = UserRegisterUi(
     lastName = ANY_LAST_NAME,
     email = ANY_USER_EMAIL,
     password = ANY_INVALID_PASSWORD,
-    confirmPassword = ANY_PASSWORD,
     pictureIdentification = ANY_PICTURE)
 
 fun givenUserRegisterUiWithInvalidConfirmPassword() = UserRegisterUi(
@@ -111,7 +105,6 @@ fun givenUserRegisterUiWithInvalidConfirmPassword() = UserRegisterUi(
     lastName = ANY_LAST_NAME,
     email = ANY_USER_EMAIL,
     password = ANY_PASSWORD,
-    confirmPassword = ANY_INVALID_PASSWORD,
     pictureIdentification = ANY_PICTURE)
 
 fun givenUserRegisterUiWithDifferentPasswords() = UserRegisterUi(
@@ -119,7 +112,6 @@ fun givenUserRegisterUiWithDifferentPasswords() = UserRegisterUi(
     lastName = ANY_LAST_NAME,
     email = ANY_USER_EMAIL,
     password = ANY_PASSWORD,
-    confirmPassword = ANY_OTHER_PASSWORD,
     pictureIdentification = ANY_PICTURE)
 
 fun givenUserUi() = UserUi(
